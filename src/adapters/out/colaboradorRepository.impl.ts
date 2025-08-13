@@ -1,15 +1,15 @@
 import { Injectable } from "@nestjs/common";
 import { PrismaService } from "src/infraestructure/prisma/prisma.service";
-import { ColaboradorRepositoyPort } from "src/ports/out/createColaborador.port";
-import { Colaborador } from "src/domain/colaboradores/colaboradores.entity";
+import { ColaboradorRepositoyPort } from "src/ports/out/colaboradores/colaborador-repository.port";
+import { Colaboradores } from "src/domain/colaboradores/colaboradores.entity";
 
 @Injectable()
 export class ColaboradorRepositoryImpl implements ColaboradorRepositoyPort {
     constructor(private readonly prisma: PrismaService) { }
 
-    async getAll(): Promise<Colaborador[]> {
+    async getAll(): Promise<Colaboradores[]> {
         const colaborador = await this.prisma.t_colaboradores.findMany();
-        return colaborador.map(col => new Colaborador({
+        return colaborador.map(col => new Colaboradores({
             id_colaboradores: col.id_colaboradores,
             num_control: col.num_control,
             nombre: col.nombre,
@@ -18,9 +18,9 @@ export class ColaboradorRepositoryImpl implements ColaboradorRepositoyPort {
         }))
     }
 
-    async getById(id_colaboradores: number): Promise<Colaborador | null> {
+    async getById(id_colaboradores: number): Promise<Colaboradores | null> {
         const colaborador = await this.prisma.t_colaboradores.findUnique({ where: { id_colaboradores } });
-        return colaborador ? new Colaborador({
+        return colaborador ? new Colaboradores({
             id_colaboradores: colaborador.id_colaboradores,
             num_control: colaborador.num_control,
             nombre: colaborador.nombre,
@@ -29,7 +29,7 @@ export class ColaboradorRepositoryImpl implements ColaboradorRepositoyPort {
         }) : null;
     }
 
-    async create(colaborador: Colaborador): Promise<Colaborador> {
+    async create(colaborador: Colaboradores): Promise<Colaboradores> {
         const created = await this.prisma.t_colaboradores.create({
             data: {
                 num_control: colaborador.num_control,
@@ -39,7 +39,7 @@ export class ColaboradorRepositoryImpl implements ColaboradorRepositoyPort {
             },
         });
         console.log(created)
-        return new Colaborador({ 
+        return new Colaboradores({ 
             num_control: created.num_control,
             nombre: created.nombre,
             correo: created.correo,
@@ -47,7 +47,7 @@ export class ColaboradorRepositoryImpl implements ColaboradorRepositoyPort {
         });
     }
 
-    async update(colaborador: Colaborador): Promise<Colaborador> {
+    async update(colaborador: Colaboradores): Promise<Colaboradores> {
         const updated = await this.prisma.t_colaboradores.update({
             where: { id_colaboradores: colaborador.id_colaboradores },
             data: {
@@ -57,7 +57,7 @@ export class ColaboradorRepositoryImpl implements ColaboradorRepositoyPort {
                 id_area: colaborador.id_area,
             },
         });
-        return new Colaborador({
+        return new Colaboradores({
             id_colaboradores: colaborador.id_colaboradores,
             num_control: colaborador.num_control,
             nombre: colaborador.nombre,

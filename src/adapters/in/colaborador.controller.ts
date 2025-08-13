@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from "@nestjs/common";
-import { ColaboradorService } from "src/domain/colaboradores/services/colaboradoresCRUD.service";
-import { Colaborador } from "src/domain/colaboradores/colaboradores.entity";
+import { ColaboradorService } from "src/application/colaboradores/colaboradoresCRUD.service";
+import { Colaboradores } from "src/domain/colaboradores/colaboradores.entity";
 import { ColaboradorRepositoryImpl } from "../out/colaboradorRepository.impl";
 
 @Controller('colaboradores')
@@ -12,18 +12,18 @@ export class ColaboradorController {
     }
 
     @Get()
-    async getAll(): Promise<Colaborador[]> {
+    async getAll(): Promise<Colaboradores[]> {
         return this.colaboradorService.getAllColaborador();
     }
 
     @Get(':id_colaboradores')
-    async findOne(@Param('id_colaboradores') id_colaboradores: number): Promise<Colaborador> {
+    async findOne(@Param('id_colaboradores') id_colaboradores: number): Promise<Colaboradores> {
         return this.colaboradorService.getColaborador(Number(id_colaboradores))
     }
 
     @Post()
-    async create(@Body() body: { num_control: number; nombre: string, correo: string, id_area: number }): Promise<Colaborador> {
-        const colaborador = new Colaborador({
+    async create(@Body() body: { num_control: number; nombre: string, correo: string, id_area: number }): Promise<Colaboradores> {
+        const colaborador = new Colaboradores({
             num_control: body.num_control,
             nombre: body.nombre,
             correo: body.correo,
@@ -36,8 +36,8 @@ export class ColaboradorController {
     async update(
         @Param('id_colaboradores') id_colaboradores: number,
         @Body() body: { num_control: number, nombre: string, correo: string, id_area: number },
-    ): Promise<Colaborador> {
-        const colaborador = new Colaborador({
+    ): Promise<Colaboradores> {
+        const colaborador = new Colaboradores({
             id_colaboradores: Number(id_colaboradores),
             num_control: body.num_control,
             nombre: body.nombre,

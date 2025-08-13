@@ -1,4 +1,4 @@
-export class Colaborador {
+export class Colaboradores {
   public id_colaboradores?: number;
   public num_control: number;
   public nombre: string;
