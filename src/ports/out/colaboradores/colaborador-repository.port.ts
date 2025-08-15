@@ -1,3 +1,5 @@
-import { ColaboradorRepositoy } from "src/domain/colaboradores/colaboradores.repository";
+import { ColaboradoresRepository } from "src/domain/colaboradores/colaboradores.repository";
 
-export type ColaboradorRepositoyPort = ColaboradorRepositoy;
+export const COLABORADORES_REPOSITORY_PORT = Symbol('COLABORADORES_REPOSITORY_PORT')
+
+export type ColaboradoresRepositoryPort = ColaboradoresRepository;

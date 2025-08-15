@@ -1,11 +1,12 @@
-import { Injectable } from "@nestjs/common";
 import { PrismaService } from "src/infraestructure/prisma/prisma.service";
-import { ColaboradorRepositoyPort } from "src/ports/out/colaboradores/colaborador-repository.port";
+import type { ColaboradoresRepository } from "src/domain/colaboradores/colaboradores.repository";
 import { Colaboradores } from "src/domain/colaboradores/colaboradores.entity";
+import { Injectable } from "@nestjs/common";
+import { ColaboradoresMapper } from "./mappers/colaboradores.mappers-t";
 
 @Injectable()
-export class ColaboradorRepositoryImpl implements ColaboradorRepositoyPort {
-    constructor(private readonly prisma: PrismaService) { }
+export class PrismaColaboradoresRepository implements ColaboradoresRepository {
+  constructor(private readonly prisma: PrismaService) {}
 
     async getAll(): Promise<Colaboradores[]> {
         const colaborador = await this.prisma.t_colaboradores.findMany();
@@ -29,22 +30,9 @@ export class ColaboradorRepositoryImpl implements ColaboradorRepositoyPort {
         }) : null;
     }
 
-    async create(colaborador: Colaboradores): Promise<Colaboradores> {
-        const created = await this.prisma.t_colaboradores.create({
-            data: {
-                num_control: colaborador.num_control,
-                nombre: colaborador.nombre,
-                correo: colaborador.correo,
-                id_area: colaborador.id_area,
-            },
-        });
-        console.log(created)
-        return new Colaboradores({ 
-            num_control: created.num_control,
-            nombre: created.nombre,
-            correo: created.correo,
-            id_area: created.id_area
-        });
+    async create(colaboradores: Colaboradores): Promise<Colaboradores> {
+        const created = await this.prisma.t_colaboradores.create({ data: ColaboradoresMapper.toPrisma(colaboradores) });
+        return ColaboradoresMapper.toDomain(created);
     }
 
     async update(colaborador: Colaboradores): Promise<Colaboradores> {

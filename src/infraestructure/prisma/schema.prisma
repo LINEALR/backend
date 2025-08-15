@@ -18,7 +18,7 @@ model t_accesorios {
   num_sap              Int
   status               String @db.VarChar(255)
   extras               String @db.VarChar(255)
-  id_area              Int    @unique(map: "t_accesorios_id_area_unique")
+  id_area              Int
   num_control          Int    @unique(map: "t_accesorios_num_control_unique")
   codigo_propietario   Int    @unique(map: "t_accesorios_codigo_propietario_unique")
   codigo_ubicacion     Int    @unique(map: "t_accesorios_codigo_ubicacion_unique")
@@ -45,7 +45,7 @@ model t_colaboradores {
   num_control      Int    @unique(map: "t_colaboradores_num_control_unique")
   nombre           String @db.VarChar(255)
   correo           String @default("N/A") @db.VarChar(255)
-  id_area          Int    @unique(map: "t_colaboradores_id_area_unique")
+  id_area          Int
 }
 
 model t_consumibles {
@@ -59,7 +59,7 @@ model t_consumibles {
   num_sap              Int
   status               String @db.VarChar(255)
   extras               String @db.VarChar(255)
-  id_area              Int    @unique(map: "t_consumibles_id_area_unique")
+  id_area              Int
   num_control          Int    @unique(map: "t_consumibles_num_control_unique")
   codigo_propietario   Int    @unique(map: "t_consumibles_codigo_propietario_unique")
   codigo_ubicacion     Int    @unique(map: "t_consumibles_codigo_ubicacion_unique")
@@ -77,7 +77,7 @@ model t_dispositivos {
   num_sap              Int
   status               String @db.VarChar(255)
   extras               String @db.VarChar(255)
-  id_area              Int    @unique(map: "t_dispositivos_id_area_unique")
+  id_area              Int
   num_control          Int    @unique(map: "t_dispositivos_num_control_unique")
   codigo_propietario   Int    @unique(map: "t_dispositivos_codigo_propietario_unique")
   codigo_ubicacion     Int    @unique(map: "t_dispositivos_codigo_ubicacion_unique")
@@ -132,7 +132,7 @@ model t_refacciones {
   num_sap              Int
   status               String        @db.VarChar(255)
   extras               String        @db.VarChar(255)
-  id_area              Int           @unique(map: "t_refacciones_id_area_unique")
+  id_area              Int
   num_control          Int           @unique(map: "t_refacciones_num_control_unique")
   codigo_propietario   Int           @unique(map: "t_refacciones_codigo_propietario_unique")
   codigo_ubicacion     Int           @unique(map: "t_refacciones_codigo_ubicacion_unique")
