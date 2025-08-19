@@ -1,5 +1,0 @@
-import { Colaboradores } from "src/domain/colaboradores/colaboradores.entity";
-
-export interface UpdateColaboradores {
-    execute(id_colaboradores: number, colaboradores: Partial<Colaboradores>): Promise<Colaboradores>;
-}
