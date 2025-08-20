@@ -6,9 +6,9 @@ import { Colaboradores } from "src/nestjs/domain/colaboradores/colaboradores.ent
 
 @Injectable()
 export class GetColaboradoresService implements GetColaboradores {
-    constructor(@Inject(COLABORADORES_REPOSITORY_PORT) private readonly repo: ColaboradoresRepositoryPort) { }
+    constructor(@Inject(COLABORADORES_REPOSITORY_PORT) private readonly repo: ColaboradoresRepositoryPort) {}
 
-    async execute(search: Colaboradores): Promise<Colaboradores[]> {
+    async execute(search: Colaboradores): Promise<Colaboradores[] | null> {
         const colaborador = await this.repo.get(search);
         if (!colaborador) {
             throw new Error(`Colaborador con la informacion ${colaborador} no encontrado`);

@@ -6,7 +6,7 @@ import { UpdateColaboradores } from "src/ports/in/nestjs/colaboradores/update-co
 
 @Injectable()
 export class UpdateColaboradoresService implements UpdateColaboradores {
-    constructor(@Inject(COLABORADORES_REPOSITORY_PORT) private readonly repo:ColaboradoresRepositoryPort ) {}
+    constructor(@Inject(COLABORADORES_REPOSITORY_PORT) private readonly repo: ColaboradoresRepositoryPort) {}
     
     async execute(id_colababoradores: number, data: Partial<Colaboradores>): Promise<Colaboradores> {
         return await this.repo.update(id_colababoradores, data);   

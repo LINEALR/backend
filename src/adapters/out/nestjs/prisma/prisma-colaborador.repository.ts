@@ -13,7 +13,7 @@ export class PrismaColaboradoresRepository implements ColaboradoresRepository {
         return colaborador.map(col => new Colaboradores(col))
     }
 
-    async get(search: Partial<Colaboradores>): Promise<Colaboradores[] | null> {
+    async get(search: Partial<Colaboradores>): Promise<Colaboradores[]> {
         const where = Object.fromEntries(
             Object.entries(search ?? {}).filter(([_, value]) => value !== undefined && value !== null)
         );
@@ -30,19 +30,9 @@ export class PrismaColaboradoresRepository implements ColaboradoresRepository {
     async update(id_colaborador: number, colaborador: Partial<Colaboradores>): Promise<Colaboradores> {
         const updated = await this.prisma.t_colaboradores.update({
             where: { id_colaboradores: id_colaborador },
-            data: {
-                num_control: colaborador.num_control,
-                nombre: colaborador.nombre,
-                correo: colaborador.correo,
-                id_area: colaborador.id_area,
-            },
+            data: ColaboradoresMapper.partialToPrima(colaborador),
         });
-        return new Colaboradores({
-            num_control: updated.num_control,
-            nombre: updated.nombre,
-            correo: updated.correo,
-            id_area: updated.id_area
-        })
+        return ColaboradoresMapper.toDomain(updated)
     }
 
     async delete(id_colaborador: number): Promise<void> {
