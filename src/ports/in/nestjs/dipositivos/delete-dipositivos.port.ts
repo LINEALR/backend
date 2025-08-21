@@ -1,6 +1,4 @@
-import { Dispositivos } from "src/nestjs/domain/dispositivo/disposivos.entity";
-
-export const DELETE_DISPOSOTIVOS_PORT = Symbol('DELTE_DIPOSITIVOS_PORT');
+export const DELETE_DISPOSITIVOS_PORT = Symbol('DELETE_DISPOSITIVOS_PORT');
 
 export interface DeleteDispositivos {
     execute(id_dispositivo: number): Promise<void>;

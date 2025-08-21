@@ -9,7 +9,7 @@ datasource db {
 
 model t_accesorios {
   id_dispositivos      Int    @id @default(autoincrement()) @db.UnsignedInt
-  dipositivo           String @db.VarChar(255)
+  dispositivo          String @db.VarChar(255)
   descripcion_sistemas String @db.VarChar(255)
   marca                String @db.VarChar(255)
   modelo               String @db.VarChar(255)
@@ -50,7 +50,7 @@ model t_colaboradores {
 
 model t_consumibles {
   id_dispositivos      Int    @id @default(autoincrement()) @db.UnsignedInt
-  dipositivo           String @db.VarChar(255)
+  dispositivo          String @db.VarChar(255)
   descripcion_sistemas String @db.VarChar(255)
   marca                String @db.VarChar(255)
   modelo               String @db.VarChar(255)
@@ -68,7 +68,7 @@ model t_consumibles {
 
 model t_dispositivos {
   id_dispositivos      Int    @id @default(autoincrement()) @db.UnsignedInt
-  dipositivo           String @db.VarChar(255)
+  dispositivo          String @db.VarChar(255)
   descripcion_sistemas String @db.VarChar(255)
   marca                String @db.VarChar(255)
   modelo               String @db.VarChar(255)
@@ -123,7 +123,7 @@ model t_propietario {
 
 model t_refacciones {
   id_dispositivos      Int           @id @default(autoincrement()) @db.UnsignedInt
-  dipositivo           String        @db.VarChar(255)
+  dispositivo          String        @db.VarChar(255)
   descripcion_sistemas String        @db.VarChar(255)
   marca                String        @db.VarChar(255)
   modelo               String        @db.VarChar(255)

@@ -5,7 +5,7 @@ import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.useGlobalFilters(new DomainExeptionFilter);
+  //app.useGlobalFilters(new DomainExeptionFilter);
 
   app.useGlobalPipes(
     new ValidationPipe({

@@ -6,7 +6,7 @@ import { ColaboradoresMapper } from "./mappers/colaboradores.mappers";
 
 @Injectable()
 export class PrismaColaboradoresRepository implements ColaboradoresRepository {
-    constructor(private readonly prisma: PrismaService) { }
+    constructor(private readonly prisma: PrismaService) {}
 
     async getAll(): Promise<Colaboradores[]> {
         const colaborador = await this.prisma.t_colaboradores.findMany();

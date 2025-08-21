@@ -1,6 +1,6 @@
 export class Dispositivos {
         public readonly id_dispositivos?: number;
-        public dipsositivo: string;
+        public dispositivo: string;
         public descripcion_sistemas: string;
         public marca: string;
         public modelo: string;
@@ -13,7 +13,7 @@ export class Dispositivos {
         public num_control: number;
         public codigo_propietario: number;
         public codigo_ubicacion: number;
-        public readonly id_factura: number;
+        public  id_factura: number;
 
     constructor(data: {
         dispositivo: string;    

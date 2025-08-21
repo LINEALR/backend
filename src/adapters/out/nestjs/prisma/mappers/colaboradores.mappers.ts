@@ -15,7 +15,7 @@ export class ColaboradoresMapper {
             ...(entity.num_control !== undefined && { num_control: entity.num_control }) ?? 0,
             ...(entity.nombre !== undefined && { nombre: entity.nombre }),
             ...(entity.correo !== undefined && { correo: entity.correo }),
-            ...(entity.id_area !== undefined && { id_area: entity.id_area}),
+            ...(entity.id_area !== undefined && { id_area: entity.id_area}) ?? 0,
         };
     }
 

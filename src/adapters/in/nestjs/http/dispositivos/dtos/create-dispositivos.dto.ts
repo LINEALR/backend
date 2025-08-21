@@ -3,7 +3,7 @@ import { IsIn, IsInt, IsNotEmpty, IsString } from "class-validator";
 export class CreateDispositivosDto {
     @IsString()
     @IsNotEmpty()
-    dipsositivo: string;
+    dispositivo: string;
 
     @IsString()
     descripcion_sistemas: string;
@@ -14,7 +14,7 @@ export class CreateDispositivosDto {
     @IsString()
     modelo: string;
 
-    @IsInt()
+    @IsString()
     @IsNotEmpty()
     num_serie: string;
 

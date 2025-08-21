@@ -9,7 +9,7 @@ export class CreateDispositivosService implements CreateDispositivos {
     constructor(@Inject(DISPOSITIVOS_REPOSITORY_PORT) private readonly repo: DispositivosRepositoryPort) {}
 
     async execute(data: Partial<Dispositivos>): Promise<Dispositivos> {
-        if (!data.dipsositivo) {
+        if (!data.dispositivo) {
             throw new Error(`El nobre del dispositivo es obligatorio`);
         }
         return await this.repo.create(data);

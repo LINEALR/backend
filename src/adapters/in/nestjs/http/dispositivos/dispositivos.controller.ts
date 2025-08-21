@@ -5,7 +5,7 @@ import { Dispositivos } from "src/nestjs/domain/dispositivo/disposivos.entity";
 
 import { GetDispositivosDto } from "./dtos/get-dispositivos.dto";
 import { CreateDispositivosDto } from "./dtos/create-dispositivos.dto";
-import { UpdateColaboradoresDto } from "../colaboradores/dtos/update-colaboradores.dto";
+import { UpdateDispositivosDto } from "./dtos/update-dispositivos.dto";
 
 import type { GetDispositivos } from "src/ports/in/nestjs/dipositivos/get-dispositivos.port";
 import type { CreateDispositivos } from "src/ports/in/nestjs/dipositivos/create-dispositivos.port";
@@ -15,7 +15,8 @@ import type { DeleteDispositivos } from "src/ports/in/nestjs/dipositivos/delete-
 import { GET_DISPOSITIVOS_PORT } from "src/ports/in/nestjs/dipositivos/get-dispositivos.port";
 import { CREATE_DISPOSITIVOS_PORT } from "src/ports/in/nestjs/dipositivos/create-dispositivos.port";
 import { UPDATE_DISPOSITIVOS_PORT } from "src/ports/in/nestjs/dipositivos/update-dispositivos.port";
-import { DELETE_DISPOSOTIVOS_PORT } from "src/ports/in/nestjs/dipositivos/delete-dipositivos.port";
+import { DELETE_DISPOSITIVOS_PORT } from "src/ports/in/nestjs/dipositivos/delete-dipositivos.port";
+import { UpdateColaboradoresDto } from "../colaboradores/dtos/update-colaboradores.dto";
 
 @Controller('dispositivos')
 export class DispositivosController {
@@ -29,7 +30,7 @@ export class DispositivosController {
         @Inject(UPDATE_DISPOSITIVOS_PORT)
         private readonly updateDispositivosService: UpdateDispositivos,
 
-        @Inject(DELETE_DISPOSOTIVOS_PORT)
+        @Inject(DELETE_DISPOSITIVOS_PORT)
         private readonly deleteDispositivosService: DeleteDispositivos
     ) {}
 
@@ -43,7 +44,7 @@ export class DispositivosController {
 
     @Post()
     @UseInterceptors(CacheInterceptor)
-    @CacheKey('obtain-dispositivos')
+    @CacheKey('create-dispositivos')
     @CacheTTL(5)
     async create(@Body() dto: CreateDispositivosDto) {
         return this.createDispositivosService.execute(dto)
@@ -52,6 +53,17 @@ export class DispositivosController {
     @Put(':id_dispositivos')
     @UseInterceptors(CacheInterceptor)
     @CacheKey('update-dispositivos')
+    @CacheTTL(5)
+    async update(
+        @Param('id_dipositivos') id_dispoitivos: number,
+        @Body() dto: UpdateColaboradoresDto
+    ){
+        return this.updateDispositivosService.execute(Number(id_dispoitivos), dto)
+    }
+
+    @Delete(':id_dispositivos')
+    @UseInterceptors(CacheInterceptor)
+    @CacheKey('delete-dispositivos')
     @CacheTTL(5)
     async delete(@Param('id_dispositivos') id_dispositivo: number): Promise<{ message: string}> {
         await this.deleteDispositivosService.execute(Number(id_dispositivo));
