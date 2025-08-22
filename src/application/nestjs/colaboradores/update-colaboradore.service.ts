@@ -1,7 +1,7 @@
 import { Inject, Injectable } from "@nestjs/common";
 import { Colaboradores } from "src/nestjs/domain/colaboradores/colaboradores.entity";
-import type { ColaboradoresRepositoryPort } from "src/ports/out/nestjs/colaboradores/colaborador-repository.port";
-import { COLABORADORES_REPOSITORY_PORT } from "src/ports/out/nestjs/colaboradores/colaborador-repository.port";
+import type { ColaboradoresRepositoryPort } from "src/ports/out/nestjs/colaborador-repository.port";
+import { COLABORADORES_REPOSITORY_PORT } from "src/ports/out/nestjs/colaborador-repository.port";
 import { UpdateColaboradores } from "src/ports/in/nestjs/colaboradores/update-colaboradores.port";
 
 @Injectable()

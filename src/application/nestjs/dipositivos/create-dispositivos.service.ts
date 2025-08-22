@@ -1,8 +1,8 @@
 import { Inject, Injectable } from "@nestjs/common";
 import { Dispositivos } from "src/nestjs/domain/dispositivo/disposivos.entity";
-import type { DispositivosRepositoryPort } from "src/ports/out/nestjs/dipositivos/dispositivos-repository.port";
+import type { DispositivosRepositoryPort } from "src/ports/out/nestjs/dispositivos-repository.port";
 import { CreateDispositivos } from "src/ports/in/nestjs/dipositivos/create-dispositivos.port";
-import { DISPOSITIVOS_REPOSITORY_PORT } from "src/ports/out/nestjs/dipositivos/dispositivos-repository.port";
+import { DISPOSITIVOS_REPOSITORY_PORT } from "src/ports/out/nestjs/dispositivos-repository.port";
 
 @Injectable()
 export class CreateDispositivosService implements CreateDispositivos {

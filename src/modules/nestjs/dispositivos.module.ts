@@ -10,7 +10,7 @@ import { CreateDispositivosService } from "src/application/nestjs/dipositivos/cr
 import { UpdateDispositivosService } from "src/application/nestjs/dipositivos/update-dispositivos.service";
 import { DeleteDispositivosService } from "src/application/nestjs/dipositivos/delete-dispositivos.service";
 
-import { DISPOSITIVOS_REPOSITORY_PORT } from "src/ports/out/nestjs/dipositivos/dispositivos-repository.port";
+import { DISPOSITIVOS_REPOSITORY_PORT } from "src/ports/out/nestjs/dispositivos-repository.port";
 import { GET_DISPOSITIVOS_PORT } from "src/ports/in/nestjs/dipositivos/get-dispositivos.port";
 import { CREATE_DISPOSITIVOS_PORT } from "src/ports/in/nestjs/dipositivos/create-dispositivos.port";
 import { UPDATE_DISPOSITIVOS_PORT } from "src/ports/in/nestjs/dipositivos/update-dispositivos.port";

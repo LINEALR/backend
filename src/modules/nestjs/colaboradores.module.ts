@@ -11,7 +11,7 @@ import { CreateColaboradoresService } from 'src/application/nestjs/colaboradores
 import { UpdateColaboradoresService } from 'src/application/nestjs/colaboradores/update-colaboradore.service';
 import { DeleteColaboradoresService } from 'src/application/nestjs/colaboradores/delete-colaboradores.service';
 
-import { COLABORADORES_REPOSITORY_PORT } from 'src/ports/out/nestjs/colaboradores/colaborador-repository.port';
+import { COLABORADORES_REPOSITORY_PORT } from 'src/ports/out/nestjs/colaborador-repository.port';
 import { CREATE_COLABORADORES_PORT } from 'src/ports/in/nestjs/colaboradores/create-colaboradores.port';
 import { GET_COLABORADORES_PORT } from 'src/ports/in/nestjs/colaboradores/get-colababoradores.port';
 import { GET_ALL_COLABORADORES_PORT } from 'src/ports/in/nestjs/colaboradores/get-all-colaboradores.ports';

@@ -1,8 +1,8 @@
 import { Usuario } from "./usuario.entity";
 
 export interface UsuarioRepository {
-    create(usuario: Usuario): Promise<void>;
-    getById(id_usuario: number): Promise<Usuario | null>;
-    update(usuario: Usuario): Promise<void>;
+    get(usuarios: Partial<Usuario>): Promise<Usuario[]>;
+    create(usuario: Partial<Usuario>): Promise<Usuario>;
+    update(id_usuario: number, usuario: Partial<Usuario>): Promise<Usuario>;
     delete(id_usuario: number): Promise<void>;
 }

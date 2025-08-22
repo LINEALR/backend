@@ -1,7 +1,7 @@
 import { Inject, Injectable } from "@nestjs/common";
 import { DeleteDispositivos } from "src/ports/in/nestjs/dipositivos/delete-dipositivos.port";
-import type { DispositivosRepositoryPort } from "src/ports/out/nestjs/dipositivos/dispositivos-repository.port";
-import { DISPOSITIVOS_REPOSITORY_PORT } from "src/ports/out/nestjs/dipositivos/dispositivos-repository.port";
+import type { DispositivosRepositoryPort } from "src/ports/out/nestjs/dispositivos-repository.port";
+import { DISPOSITIVOS_REPOSITORY_PORT } from "src/ports/out/nestjs/dispositivos-repository.port";
 
 @Injectable()
 export class DeleteDispositivosService implements DeleteDispositivos {
