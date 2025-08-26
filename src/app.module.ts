@@ -2,8 +2,10 @@ import { Module } from '@nestjs/common';
 import { CacheModule } from '@nestjs/cache-manager';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+
 import { ColaboradoresModule } from './modules/nestjs/colaboradores.module';
 import { DispositivosModule } from './modules/nestjs/dispositivos.module';
+import { UsuarioModule } from './modules/nestjs/usuario.module';
 
 @Module({
   imports: [
@@ -12,7 +14,8 @@ import { DispositivosModule } from './modules/nestjs/dispositivos.module';
       ttl: 5,
     }),
     ColaboradoresModule,
-    DispositivosModule
+    DispositivosModule,
+    UsuarioModule
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -25,10 +25,10 @@ import { DELETE_COLABORADORES_PORT } from 'src/ports/in/nestjs/colaboradores/del
     PrismaService,
     { provide: COLABORADORES_REPOSITORY_PORT, useClass: PrismaColaboradoresRepository },
     { provide: GET_COLABORADORES_PORT, useClass: GetColaboradoresService },
-    { provide: GET_ALL_COLABORADORES_PORT, useClass: GetAllColaboradoresService},
+    { provide: GET_ALL_COLABORADORES_PORT, useClass: GetAllColaboradoresService },
     { provide: CREATE_COLABORADORES_PORT, useClass: CreateColaboradoresService },
-    { provide: UPDATE_COLABORADORES_PORT, useClass: UpdateColaboradoresService},
-    { provide: DELETE_COLABORADORES_PORT, useClass: DeleteColaboradoresService}
+    { provide: UPDATE_COLABORADORES_PORT, useClass: UpdateColaboradoresService },
+    { provide: DELETE_COLABORADORES_PORT, useClass: DeleteColaboradoresService }
   ],
 })
 
