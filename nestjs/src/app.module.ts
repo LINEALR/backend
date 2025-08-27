@@ -3,9 +3,9 @@ import { CacheModule } from '@nestjs/cache-manager';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
-import { ColaboradoresModule } from './modules/nestjs/colaboradores.module';
-import { DispositivosModule } from './modules/nestjs/dispositivos.module';
-import { UsuarioModule } from './modules/nestjs/usuario.module';
+import { ColaboradoresModule } from './modules/colaboradores.module';
+import { DispositivosModule } from './modules/dispositivos.module';
+import { UsuarioModule } from './modules/usuario.module';
 
 @Module({
   imports: [

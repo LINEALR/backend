@@ -1,7 +1,0 @@
-import { Colaboradores } from "src/nestjs/domain/colaboradores/colaboradores.entity";
-
-export const UPDATE_COLABORADORES_PORT = Symbol('UPDATE_COLABORADORES_PORT');
-
-export interface UpdateColaboradores {
-    execute(id_colaboradores: number, colaboradores: Partial<Colaboradores>): Promise<Colaboradores>;
-}
