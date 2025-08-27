@@ -9,10 +9,10 @@ import { COLABORADORES_REPOSITORY_PORT } from "src/ports/out/colaborador-reposit
 export class CreateColaboradoresService implements CreateColaboradores {
     constructor(@Inject(COLABORADORES_REPOSITORY_PORT) private readonly repo: ColaboradoresRepositoryPort) {}
 
-    async execute(data: Partial<Colaboradores>): Promise<Colaboradores> {
-        if (!data.nombre) {
+    async execute(colaborador: Partial<Colaboradores>): Promise<Colaboradores> {
+        if (!colaborador.nombre) {
             throw new ColabroradorNotNameExeption();
         }
-        return await this.repo.create(data);
+        return await this.repo.create(colaborador);
     }
 }

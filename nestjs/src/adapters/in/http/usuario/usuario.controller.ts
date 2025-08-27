@@ -38,8 +38,8 @@ export class UsuarioController {
     @UseInterceptors(CacheInterceptor)
     @CacheKey('get-usuario')
     @CacheTTL(5)
-    async get(): Promise<Usuario[] | null>   {
-        return this.getUsuarioService.execute();
+    async get(@Query() dto:GetUsuarioDto) {
+        return this.getUsuarioService.execute(dto);
     }
     @Post()
     @UseInterceptors(CacheInterceptor)

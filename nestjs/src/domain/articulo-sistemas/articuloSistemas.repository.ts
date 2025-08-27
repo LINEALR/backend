@@ -1,4 +1,4 @@
-import { AreaSistemas } from "../area-sistemas/areaSistemas.entity";
+import { AreaSistemas } from "../area-sistemas/area-sistemas.entity";
 import { ArticuloSistemas } from "./articuloSistemas.entity"; 
 
 export interface ArticuloSistemasRepository {

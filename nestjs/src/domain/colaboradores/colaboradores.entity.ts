@@ -6,11 +6,11 @@ export class Colaboradores {
   public id_area: number;
 
   constructor(data: {
-    num_control: number;
-    nombre: string;
-    correo: string;
-    id_area: number;
-    id_colaboradores?: number;
+    num_control: number,
+    nombre: string,
+    correo: string,
+    id_area: number,
+    id_colaboradores?: number
   }) {
     Object.assign(this, data);
   }

@@ -41,7 +41,7 @@ export class ColaboradoresController {
 
     @Get('buscar')
     @UseInterceptors(CacheInterceptor)
-    @CacheKey('obtain-colaborador')
+    @CacheKey('get-colaborador')
     @CacheTTL(5)
     async get(@Query() dto: GetColaboradoresDto) {
         return this.getColaboradoresService.execute(dto);
@@ -49,7 +49,7 @@ export class ColaboradoresController {
 
     @Get()
     @UseInterceptors(CacheInterceptor)
-    @CacheKey('obtain-colaborador')
+    @CacheKey('get-colaborador')
     @CacheTTL(5)
     async getAll(): Promise<Colaboradores[]> {
         return this.getAllColaboradoresService.execute();

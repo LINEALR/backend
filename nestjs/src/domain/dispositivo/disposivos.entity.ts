@@ -16,21 +16,21 @@ export class Dispositivos {
         public  id_factura: number;
 
     constructor(data: {
-        dispositivo: string;    
-        descripcion_sistemas: string;
-        marca: string;
-        modelo: string;
-        num_serie: string;
-        id_visual: string;
-        num_sap: number;
-        status: string;
-        extras: string;
-        id_area: number;
-        num_control: number;
-        codigo_propietario: number;
-        codigo_ubicacion: number;
-        id_factura: number;
-        id_dispositivos?: number;
+        dispositivo: string,
+        descripcion_sistemas: string,
+        marca: string,
+        modelo: string,
+        num_serie: string,
+        id_visual: string,
+        num_sap: number,
+        status: string,
+        extras: string,
+        id_area: number,
+        num_control: number,
+        codigo_propietario: number,
+        codigo_ubicacion: number,
+        id_factura: number,
+        id_dispositivos?: number
     }) {
         Object.assign(this, data)
     }
