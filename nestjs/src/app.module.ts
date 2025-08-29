@@ -3,6 +3,7 @@ import { CacheModule } from '@nestjs/cache-manager';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
+import { AreaSistemasModule } from './modules/area-sistemas.module';
 import { ColaboradoresModule } from './modules/colaboradores.module';
 import { DispositivosModule } from './modules/dispositivos.module';
 import { UsuarioModule } from './modules/usuario.module';
@@ -15,7 +16,8 @@ import { UsuarioModule } from './modules/usuario.module';
     }),
     ColaboradoresModule,
     DispositivosModule,
-    UsuarioModule
+    UsuarioModule,
+    AreaSistemasModule
   ],
   controllers: [AppController],
   providers: [AppService],
