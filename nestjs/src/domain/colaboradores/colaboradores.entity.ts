@@ -1,5 +1,5 @@
 export class Colaboradores {
-  public id_colaboradores?: number;
+  public readonly id_colaboradores?: number;
   public num_control: number;
   public nombre: string;
   public correo: string;

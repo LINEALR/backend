@@ -1,4 +1,4 @@
-import { ArticuloSistemas } from "./articuloSistemas.entity"; 
+import { ArticuloSistemas } from "./articulo-sistemas.entity"; 
 
 export interface ArticuloSistemasRepository {
     get(search: Partial<ArticuloSistemas>): Promise<ArticuloSistemas[]>;

@@ -1,8 +1,8 @@
 import { Factura } from "./factura.entity";
 
 export interface FacturaRepository {
-    create(factura: Factura): Promise<void>;
-    getById(id_factura: number): Promise<Factura | null>;
-    update(factura: Factura): Promise<void>;
+    get(search: Partial<Factura>): Promise<Factura[]>;
+    create(factura: Partial<Factura>): Promise<Factura>;
+    update(id_factura: number, factura: Partial<Factura>): Promise<Factura>;
     delete(id_factura: number): Promise<void>;
 }

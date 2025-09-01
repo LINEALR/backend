@@ -6,8 +6,8 @@ export class ColaboradoresMapper {
             num_control: entity.num_control,
             nombre: entity.nombre,
             correo: entity.correo,
-            id_area: entity.id_area,
-        };
+            id_area: entity.id_area
+        }
     }
 
     static partialToPrima(entity: Partial<Colaboradores>) {

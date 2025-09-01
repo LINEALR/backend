@@ -4,8 +4,10 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
 import { AreaSistemasModule } from './modules/area-sistemas.module';
+import { ArticuloSistemas } from './domain/articulo-sistemas/articulo-sistemas.entity';
 import { ColaboradoresModule } from './modules/colaboradores.module';
 import { DispositivosModule } from './modules/dispositivos.module';
+import { FacturaModule } from './modules/factura.module';
 import { UsuarioModule } from './modules/usuario.module';
 
 @Module({
@@ -16,8 +18,10 @@ import { UsuarioModule } from './modules/usuario.module';
     }),
     ColaboradoresModule,
     DispositivosModule,
+    AreaSistemasModule,
+    ArticuloSistemas,
+    FacturaModule,
     UsuarioModule,
-    AreaSistemasModule
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -8,11 +8,6 @@ import { ColaboradoresMapper } from "./mappers/colaboradores.mapper";
 export class PrismaColaboradoresRepository implements ColaboradoresRepository {
     constructor(private readonly prisma: PrismaService) {}
 
-    async getAll(): Promise<Colaboradores[]> {
-        const colaborador = await this.prisma.t_colaboradores.findMany();
-        return colaborador.map(col => new Colaboradores(col))
-    }
-
     async get(search: Partial<Colaboradores>): Promise<Colaboradores[]> {
         const where = Object.fromEntries(
             Object.entries(search ?? {}).filter(([_, value]) => value !== undefined && value !== null)

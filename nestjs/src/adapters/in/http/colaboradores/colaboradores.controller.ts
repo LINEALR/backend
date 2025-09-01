@@ -1,20 +1,16 @@
 import { Controller, Get, Post, Put, Delete, Body, Param, Inject, UseInterceptors, Query } from "@nestjs/common";
 import { CacheInterceptor, CacheKey, CacheTTL } from "@nestjs/cache-manager";
 
-import { Colaboradores } from "src/domain/colaboradores/colaboradores.entity";
-
 import { GetColaboradoresDto } from "./dtos/get-colaboradores.dto";
 import { CreateColaboradoresDto } from "./dtos/create-colaboradores.dto";
 import { UpdateColaboradoresDto } from "./dtos/update-colaboradores.dto";
 
 import type { GetColaboradores } from "src/ports/in/colaboradores/get-colababoradores.port";
-import type { GetAllColaboradores } from "src/ports/in/colaboradores/get-all-colaboradores.ports";
 import type { CreateColaboradores } from "src/ports/in/colaboradores/create-colaboradores.port";
 import type { UpdateColaboradores } from "src/ports/in/colaboradores/update-colaboradores.port";
 import type { DeleteColaboradores } from "src/ports/in/colaboradores/delete-colaboradores.port";
 
 import { GET_COLABORADORES_PORT } from "src/ports/in/colaboradores/get-colababoradores.port";
-import { GET_ALL_COLABORADORES_PORT } from "src/ports/in/colaboradores/get-all-colaboradores.ports";
 import { CREATE_COLABORADORES_PORT } from "src/ports/in/colaboradores/create-colaboradores.port";
 import { UPDATE_COLABORADORES_PORT } from "src/ports/in/colaboradores/update-colaboradores.port";
 import { DELETE_COLABORADORES_PORT } from "src/ports/in/colaboradores/delete-colaboradores.port";
@@ -24,9 +20,6 @@ export class ColaboradoresController {
     constructor(
         @Inject(GET_COLABORADORES_PORT)
         private readonly getColaboradoresService: GetColaboradores,
-
-        @Inject(GET_ALL_COLABORADORES_PORT)
-        private readonly getAllColaboradoresService: GetAllColaboradores,
 
         @Inject(CREATE_COLABORADORES_PORT)
         private readonly createColaboradoresService: CreateColaboradores,
@@ -45,14 +38,6 @@ export class ColaboradoresController {
     @CacheTTL(5)
     async get(@Query() dto: GetColaboradoresDto) {
         return this.getColaboradoresService.execute(dto);
-    }
-
-    @Get()
-    @UseInterceptors(CacheInterceptor)
-    @CacheKey('get-colaborador')
-    @CacheTTL(5)
-    async getAll(): Promise<Colaboradores[]> {
-        return this.getAllColaboradoresService.execute();
     }
 
     @Post()

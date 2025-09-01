@@ -6,7 +6,6 @@ import { ColaboradoresController } from 'src/adapters/in/http/colaboradores/cola
 import { PrismaColaboradoresRepository } from 'src/adapters/out/prisma/prisma-colaborador.repository';
 
 import { GetColaboradoresService } from 'src/application/colaboradores/get-colaboradores.service';
-import { GetAllColaboradoresService } from 'src/application/colaboradores/get-all-colaboradores.service';
 import { CreateColaboradoresService } from 'src/application/colaboradores/create-colaboradores.service';
 import { UpdateColaboradoresService } from 'src/application/colaboradores/update-colaboradore.service';
 import { DeleteColaboradoresService } from 'src/application/colaboradores/delete-colaboradores.service';
@@ -14,7 +13,6 @@ import { DeleteColaboradoresService } from 'src/application/colaboradores/delete
 import { COLABORADORES_REPOSITORY_PORT } from 'src/ports/out/colaborador-repository.port';
 import { CREATE_COLABORADORES_PORT } from 'src/ports/in/colaboradores/create-colaboradores.port';
 import { GET_COLABORADORES_PORT } from 'src/ports/in/colaboradores/get-colababoradores.port';
-import { GET_ALL_COLABORADORES_PORT } from 'src/ports/in/colaboradores/get-all-colaboradores.ports';
 import { UPDATE_COLABORADORES_PORT } from 'src/ports/in/colaboradores/update-colaboradores.port';
 import { DELETE_COLABORADORES_PORT } from 'src/ports/in/colaboradores/delete-colaboradores.port';
 
@@ -25,7 +23,6 @@ import { DELETE_COLABORADORES_PORT } from 'src/ports/in/colaboradores/delete-col
     PrismaService,
     { provide: COLABORADORES_REPOSITORY_PORT, useClass: PrismaColaboradoresRepository },
     { provide: GET_COLABORADORES_PORT, useClass: GetColaboradoresService },
-    { provide: GET_ALL_COLABORADORES_PORT, useClass: GetAllColaboradoresService },
     { provide: CREATE_COLABORADORES_PORT, useClass: CreateColaboradoresService },
     { provide: UPDATE_COLABORADORES_PORT, useClass: UpdateColaboradoresService },
     { provide: DELETE_COLABORADORES_PORT, useClass: DeleteColaboradoresService }
