@@ -1,4 +1,4 @@
-import { Dispositivos } from "./disposivos.entity";
+import { Dispositivos } from "./dispositivos.entity";
 
 export interface DispositivosRepository {
     get(search: Partial<Dispositivos>): Promise<Dispositivos[]>;

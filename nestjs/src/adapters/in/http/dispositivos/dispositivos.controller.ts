@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Put, Delete, Body, Param, Inject, UseInterceptors, Query } from "@nestjs/common";
 import { CacheInterceptor, CacheKey, CacheTTL } from "@nestjs/cache-manager";
 
-import { Dispositivos } from "src/domain/dispositivo/disposivos.entity";
+import { Dispositivos } from "src/domain/dispositivo/dispositivos.entity";
 
 import { GetDispositivosDto } from "./dtos/get-dispositivos.dto";
 import { CreateDispositivosDto } from "./dtos/create-dispositivos.dto";

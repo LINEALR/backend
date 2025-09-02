@@ -1,4 +1,4 @@
-import { Dispositivos } from "src/domain/dispositivo/disposivos.entity";
+import { Dispositivos } from "src/domain/dispositivo/dispositivos.entity";
 
 export const CREATE_DISPOSITIVOS_PORT = Symbol('CREATE_DISPOSITIVOS_PORT');
 

@@ -8,6 +8,7 @@ import { ArticuloSistemas } from './domain/articulo-sistemas/articulo-sistemas.e
 import { ColaboradoresModule } from './modules/colaboradores.module';
 import { DispositivosModule } from './modules/dispositivos.module';
 import { FacturaModule } from './modules/factura.module';
+import { HistorialArticuloModule } from './modules/historial-articulo.module';
 import { UsuarioModule } from './modules/usuario.module';
 
 @Module({
@@ -21,6 +22,7 @@ import { UsuarioModule } from './modules/usuario.module';
     AreaSistemasModule,
     ArticuloSistemas,
     FacturaModule,
+    HistorialArticuloModule,
     UsuarioModule,
   ],
   controllers: [AppController],

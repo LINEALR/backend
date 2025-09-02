@@ -10,7 +10,7 @@ export class ColaboradoresMapper {
         }
     }
 
-    static partialToPrima(entity: Partial<Colaboradores>) {
+    static partialToPrisma(entity: Partial<Colaboradores>) {
         return {
             ...(entity.num_control !== undefined && { num_control: entity.num_control }) ?? 0,
             ...(entity.nombre !== undefined && { nombre: entity.nombre }),

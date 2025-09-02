@@ -25,7 +25,7 @@ export class PrismaColaboradoresRepository implements ColaboradoresRepository {
     async update(id_colaborador: number, colaborador: Partial<Colaboradores>): Promise<Colaboradores> {
         const updated = await this.prisma.t_colaboradores.update({
             where: { id_colaboradores: id_colaborador },
-            data: ColaboradoresMapper.partialToPrima(colaborador),
+            data: ColaboradoresMapper.partialToPrisma(colaborador),
         });
         return ColaboradoresMapper.toDomain(updated)
     }

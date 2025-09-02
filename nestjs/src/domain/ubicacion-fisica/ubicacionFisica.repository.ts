@@ -1,8 +1,8 @@
 import { UbicacionFisica } from "./ubicacionFisica.entity";
 
 export interface UbicacionFisicaRepository {
-    create(ubicacionFisica: UbicacionFisica): Promise<void>;
-    getById(id_ubicacion: number): Promise<UbicacionFisica | null>;
-    update(ubicacionFisica: UbicacionFisica): Promise<void>;
+    get(search: Partial<UbicacionFisica>): Promise<UbicacionFisica[]>;
+    create(ubicacion_fisica: Partial<UbicacionFisica>): Promise<UbicacionFisica>;
+    update(id_ubicacion: number, ubicacion_fisica: UbicacionFisica): Promise<UbicacionFisica>;
     delete(id_ubicacion: number): Promise<void>;
 }

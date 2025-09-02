@@ -1,8 +1,7 @@
 import { Inject, Injectable } from "@nestjs/common"
 import { ArticuloSistemas } from "src/domain/articulo-sistemas/articulo-sistemas.entity"
 import { CreateArticuloSistemas } from "src/ports/in/articulo-sistemas/create-articulo-sistemas.port"
-import type { ArticuloSistemasRepositoryPort } from "src/ports/out/articulo-sistemas-repository.port"
-import { ARTICULO_SISTEMAS_REPOSITORY_PORT } from "src/ports/out/articulo-sistemas-repository.port"
+import { ARTICULO_SISTEMAS_REPOSITORY_PORT, type ArticuloSistemasRepositoryPort } from "src/ports/out/articulo-sistemas-repository.port"
 
 @Injectable()
 export class CreateArticuloSistemasService implements CreateArticuloSistemas {
@@ -12,6 +11,6 @@ export class CreateArticuloSistemasService implements CreateArticuloSistemas {
         if(!articulo_sistemas.codigo_articulo) {
             throw new Error('Error');
         }
-        return await this.repo.create(articulo_sistemas);
+        return await this.repo.create(articulo_sistemas)
     }   
 }

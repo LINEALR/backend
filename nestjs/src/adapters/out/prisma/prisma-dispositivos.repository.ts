@@ -1,6 +1,6 @@
 import { PrismaService } from "src/infraestructure/prisma/prisma.service";
 import type { DispositivosRepository } from "src/domain/dispositivo/dispositivos.repository";
-import { Dispositivos } from "src/domain/dispositivo/disposivos.entity";
+import { Dispositivos } from "src/domain/dispositivo/dispositivos.entity";
 import { Injectable } from "@nestjs/common";
 import { DispositivosMapper } from "./mappers/dispositivos.mapper";
 
