@@ -11,8 +11,8 @@ import { UpdateColaboradoresService } from 'src/application/colaboradores/update
 import { DeleteColaboradoresService } from 'src/application/colaboradores/delete-colaboradores.service';
 
 import { COLABORADORES_REPOSITORY_PORT } from 'src/ports/out/colaborador-repository.port';
-import { CREATE_COLABORADORES_PORT } from 'src/ports/in/colaboradores/create-colaboradores.port';
 import { GET_COLABORADORES_PORT } from 'src/ports/in/colaboradores/get-colababoradores.port';
+import { CREATE_COLABORADORES_PORT } from 'src/ports/in/colaboradores/create-colaboradores.port';
 import { UPDATE_COLABORADORES_PORT } from 'src/ports/in/colaboradores/update-colaboradores.port';
 import { DELETE_COLABORADORES_PORT } from 'src/ports/in/colaboradores/delete-colaboradores.port';
 

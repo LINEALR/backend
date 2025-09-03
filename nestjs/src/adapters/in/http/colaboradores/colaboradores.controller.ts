@@ -5,15 +5,10 @@ import { GetColaboradoresDto } from "./dtos/get-colaboradores.dto";
 import { CreateColaboradoresDto } from "./dtos/create-colaboradores.dto";
 import { UpdateColaboradoresDto } from "./dtos/update-colaboradores.dto";
 
-import type { GetColaboradores } from "src/ports/in/colaboradores/get-colababoradores.port";
-import type { CreateColaboradores } from "src/ports/in/colaboradores/create-colaboradores.port";
-import type { UpdateColaboradores } from "src/ports/in/colaboradores/update-colaboradores.port";
-import type { DeleteColaboradores } from "src/ports/in/colaboradores/delete-colaboradores.port";
-
-import { GET_COLABORADORES_PORT } from "src/ports/in/colaboradores/get-colababoradores.port";
-import { CREATE_COLABORADORES_PORT } from "src/ports/in/colaboradores/create-colaboradores.port";
-import { UPDATE_COLABORADORES_PORT } from "src/ports/in/colaboradores/update-colaboradores.port";
-import { DELETE_COLABORADORES_PORT } from "src/ports/in/colaboradores/delete-colaboradores.port";
+import { GET_COLABORADORES_PORT, type GetColaboradores } from "src/ports/in/colaboradores/get-colababoradores.port";
+import { CREATE_COLABORADORES_PORT, type CreateColaboradores } from "src/ports/in/colaboradores/create-colaboradores.port";
+import { UPDATE_COLABORADORES_PORT, type UpdateColaboradores } from "src/ports/in/colaboradores/update-colaboradores.port";
+import { DELETE_COLABORADORES_PORT, type DeleteColaboradores } from "src/ports/in/colaboradores/delete-colaboradores.port";
 
 @Controller('colaboradores')
 export class ColaboradoresController {
@@ -30,7 +25,6 @@ export class ColaboradoresController {
         @Inject(DELETE_COLABORADORES_PORT)
         private readonly deleteColaboradoresService: DeleteColaboradores
     ) { }
-
 
     @Get('buscar')
     @UseInterceptors(CacheInterceptor)

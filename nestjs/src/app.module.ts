@@ -9,6 +9,8 @@ import { ColaboradoresModule } from './modules/colaboradores.module';
 import { DispositivosModule } from './modules/dispositivos.module';
 import { FacturaModule } from './modules/factura.module';
 import { HistorialArticuloModule } from './modules/historial-articulo.module';
+import { PropietarioModule } from './modules/propietario.module';
+import { UbicacionFisicaModule } from './modules/ubicacion-fisica.module';
 import { UsuarioModule } from './modules/usuario.module';
 
 @Module({
@@ -23,6 +25,8 @@ import { UsuarioModule } from './modules/usuario.module';
     ArticuloSistemas,
     FacturaModule,
     HistorialArticuloModule,
+    PropietarioModule,
+    UbicacionFisicaModule,
     UsuarioModule,
   ],
   controllers: [AppController],

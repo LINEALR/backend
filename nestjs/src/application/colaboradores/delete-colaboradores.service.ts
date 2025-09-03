@@ -1,7 +1,6 @@
 import { Inject, Injectable } from "@nestjs/common";
-import type { ColaboradoresRepositoryPort } from "src/ports/out/colaborador-repository.port";
-import { COLABORADORES_REPOSITORY_PORT } from "src/ports/out/colaborador-repository.port";
 import { DeleteColaboradores } from "src/ports/in/colaboradores/delete-colaboradores.port";
+import { COLABORADORES_REPOSITORY_PORT, type ColaboradoresRepositoryPort } from "src/ports/out/colaborador-repository.port";
 
 @Injectable()
 export class DeleteColaboradoresService implements DeleteColaboradores {

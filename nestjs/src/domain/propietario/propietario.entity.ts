@@ -1,10 +1,10 @@
 export class Propietario {
     public readonly id_propietario?: number;
-    public codigo_popietario: string;
+    public codigo_propietario: number;
     public nombre: string;
 
     constructor(data: {
-        codigo_popietario: string,
+        codigo_propietario: number,
         nombre: string,
         id_propietario?: number,
     }) {
