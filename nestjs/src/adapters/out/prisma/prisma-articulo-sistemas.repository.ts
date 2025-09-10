@@ -1,4 +1,4 @@
-import { PrismaService } from "src/infraestructure/prisma/prisma.service";
+import { PrismaService } from "src/infraestructure/prisma/postgresql/prisma.service";
 import { ArticuloSistemas } from "src/domain/articulo-sistemas/articulo-sistemas.entity";
 import type { ArticuloSistemasRepository } from "src/domain/articulo-sistemas/articulo-sistemas.repository";
 import { Injectable } from "@nestjs/common";

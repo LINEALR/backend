@@ -1,9 +1,10 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { CacheModule } from '@nestjs/cache-manager';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
-import { AreaSistemasModule } from './modules/area-sistemas.module';
+import { AreasSistemasModule } from './modules/areas-sistemas.module';
 import { ArticuloSistemas } from './domain/articulo-sistemas/articulo-sistemas.entity';
 import { ColaboradoresModule } from './modules/colaboradores.module';
 import { DispositivosModule } from './modules/dispositivos.module';
@@ -15,13 +16,14 @@ import { UsuarioModule } from './modules/usuario.module';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({ isGlobal: true }),
     CacheModule.register({
-      isGlobal : true,
+      isGlobal: true,
       ttl: 5,
     }),
     ColaboradoresModule,
     DispositivosModule,
-    AreaSistemasModule,
+    AreasSistemasModule,
     ArticuloSistemas,
     FacturaModule,
     HistorialArticuloModule,
@@ -33,4 +35,4 @@ import { UsuarioModule } from './modules/usuario.module';
   providers: [AppService],
 })
 
-export class AppModule {}
+export class AppModule { }

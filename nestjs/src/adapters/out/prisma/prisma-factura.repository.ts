@@ -1,4 +1,4 @@
-import { PrismaService } from "src/infraestructure/prisma/prisma.service";
+import { PrismaService } from "src/infraestructure/prisma/postgresql/prisma.service";
 import { Factura } from "src/domain/factura/factura.entity";
 import type { FacturaRepository } from "src/domain/factura/factura.repository";
 import { Injectable } from "@nestjs/common";

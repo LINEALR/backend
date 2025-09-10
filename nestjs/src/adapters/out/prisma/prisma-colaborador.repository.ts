@@ -1,4 +1,4 @@
-import { PrismaService } from "src/infraestructure/prisma/prisma.service";
+import { PrismaService } from "src/infraestructure/prisma/postgresql/prisma.service";
 import { Colaboradores } from "src/domain/colaboradores/colaboradores.entity";
 import type { ColaboradoresRepository } from "src/domain/colaboradores/colaboradores.repository";
 import { Injectable } from "@nestjs/common";

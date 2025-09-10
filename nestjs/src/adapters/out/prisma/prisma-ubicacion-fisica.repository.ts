@@ -1,4 +1,4 @@
-import { PrismaService } from "src/infraestructure/prisma/prisma.service";
+import { PrismaService } from "src/infraestructure/prisma/postgresql/prisma.service";
 import { Injectable } from "@nestjs/common";
 import { UbicacionFisica } from "src/domain/ubicacion-fisica/ubicacion-fisica.entity";
 import type { UbicacionFisicaRepository } from "src/domain/ubicacion-fisica/ubicacion-fisica.repository";

@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import { PrismaService } from "src/infraestructure/prisma/prisma.service";
+import { PrismaService } from "src/infraestructure/prisma/postgresql/prisma.service";
 import { HistorialArticulo } from "src/domain/historial-articulo/historial-articulo.entity";
 import type { HistorialArticuloRepository } from "src/domain/historial-articulo/historial-articulos.repository";
 import { HistorialArticuloMapper } from "./mappers/historial-articulo.mapper";

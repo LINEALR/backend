@@ -1,0 +1,205 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/infraestructure/prisma/postgres"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("POSTGRESQL_DATABASE_URL")
+}
+
+model t_accesorios {
+  id_accesorios        Int                @id(map: "T_accesorios_pkey") @default(autoincrement())
+  dispositivo          String             @db.VarChar(255)
+  descripcion_sistemas String             @db.VarChar(255)
+  marca                String             @db.VarChar(255)
+  modelo               String             @db.VarChar(255)
+  num_serie            String             @db.VarChar(255)
+  id_visual            String             @db.VarChar(255)
+  num_sap              Int
+  status               String             @db.VarChar(255)
+  extras               String             @db.VarChar(255)
+  id_area              Int
+  num_control          Int
+  codigo_propietario   Int
+  codigo_ubicacion     Int
+  id_factura           Int
+  t_propietario        t_propietario      @relation(fields: [codigo_propietario], references: [id_propietario], onDelete: NoAction, onUpdate: NoAction, map: "t_accesorios_codigo_propietario_foreign")
+  t_ubicacion_fisica   t_ubicacion_fisica @relation(fields: [codigo_ubicacion], references: [id_ubicacion], onDelete: NoAction, onUpdate: NoAction, map: "t_accesorios_codigo_ubicacion_foreign")
+  t_areas_sistemas     t_areas_sistemas   @relation(fields: [id_area], references: [id_area], onDelete: NoAction, onUpdate: NoAction, map: "t_accesorios_id_area_foreign")
+  t_factura            t_factura          @relation(fields: [id_factura], references: [id_factura], onDelete: NoAction, onUpdate: NoAction, map: "t_accesorios_id_factura_foreign")
+  t_colaboradores      t_colaboradores    @relation(fields: [num_control], references: [id_colaboradores], onDelete: NoAction, onUpdate: NoAction, map: "t_accesorios_num_control_foreign")
+}
+
+model t_areas_sistemas {
+  id_area          Int               @id(map: "T_areas_sistemas_pkey") @default(autoincrement())
+  ceco_sap         String            @db.VarChar(255)
+  descripcion_ceco String            @db.VarChar(255)
+  area_sistemas    Int
+  t_accesorios     t_accesorios[]
+  t_colaboradores  t_colaboradores[]
+  t_consumibles    t_consumibles[]
+  t_dispositivos   t_dispositivos[]
+  t_refacciones    t_refacciones[]
+}
+
+model t_articulo_sistemas {
+  id_articulo     Int    @id(map: "T_articulo_sistemas_pkey") @default(autoincrement())
+  codigo_articulo Int
+  descripcion     String @db.VarChar(255)
+  identificador   String @db.VarChar(255)
+  consecutivo     Int
+}
+
+model t_colaboradores {
+  id_colaboradores Int              @id(map: "T_colaboradores_pkey") @default(autoincrement())
+  num_control      Int
+  nombre           String           @db.VarChar(255)
+  correo           String           @default("N/A") @db.VarChar(255)
+  id_area          Int
+  t_accesorios     t_accesorios[]
+  t_areas_sistemas t_areas_sistemas @relation(fields: [id_area], references: [id_area], onDelete: NoAction, onUpdate: NoAction, map: "t_colaboradores_id_area_foreign")
+  t_consumibles    t_consumibles[]
+  t_dispositivos   t_dispositivos[]
+  t_refacciones    t_refacciones[]
+  t_usuario        t_usuario?
+}
+
+model t_consumibles {
+  id_consumibles       Int                @id(map: "T_consumibles_pkey") @default(autoincrement())
+  dispositivo          String             @db.VarChar(255)
+  descripcion_sistemas String             @db.VarChar(255)
+  marca                String             @db.VarChar(255)
+  modelo               String             @db.VarChar(255)
+  num_serie            String             @db.VarChar(255)
+  id_visual            String             @db.VarChar(255)
+  num_sap              Int
+  status               String             @db.VarChar(255)
+  extras               String             @db.VarChar(255)
+  id_area              Int
+  num_control          Int
+  codigo_propietario   Int
+  codigo_ubicacion     Int
+  id_factura           Int
+  t_propietario        t_propietario      @relation(fields: [codigo_propietario], references: [id_propietario], onDelete: NoAction, onUpdate: NoAction, map: "t_consumibles_codigo_propietario_foreign")
+  t_ubicacion_fisica   t_ubicacion_fisica @relation(fields: [codigo_ubicacion], references: [id_ubicacion], onDelete: NoAction, onUpdate: NoAction, map: "t_consumibles_codigo_ubicacion_foreign")
+  t_areas_sistemas     t_areas_sistemas   @relation(fields: [id_area], references: [id_area], onDelete: NoAction, onUpdate: NoAction, map: "t_consumibles_id_area_foreign")
+  t_factura            t_factura          @relation(fields: [id_factura], references: [id_factura], onDelete: NoAction, onUpdate: NoAction, map: "t_consumibles_id_factura_foreign")
+  t_colaboradores      t_colaboradores    @relation(fields: [num_control], references: [id_colaboradores], onDelete: NoAction, onUpdate: NoAction, map: "t_consumibles_num_control_foreign")
+}
+
+model t_dispositivos {
+  id_dispositivos      Int                @id(map: "T_dispositivos_pkey") @default(autoincrement())
+  dispositivo          String             @db.VarChar(255)
+  descripcion_sistemas String             @db.VarChar(255)
+  marca                String             @db.VarChar(255)
+  modelo               String             @db.VarChar(255)
+  num_serie            String             @db.VarChar(255)
+  id_visual            String             @db.VarChar(255)
+  num_sap              Int
+  status               String             @db.VarChar(255)
+  extras               String             @db.VarChar(255)
+  id_area              Int
+  num_control          Int
+  codigo_propietario   Int
+  codigo_ubicacion     Int
+  id_factura           Int
+  t_propietario        t_propietario      @relation(fields: [codigo_propietario], references: [id_propietario], onDelete: NoAction, onUpdate: NoAction, map: "t_dispositivos_codigo_propietario_foreign")
+  t_ubicacion_fisica   t_ubicacion_fisica @relation(fields: [codigo_ubicacion], references: [id_ubicacion], onDelete: NoAction, onUpdate: NoAction, map: "t_dispositivos_codigo_ubicacion_foreign")
+  t_areas_sistemas     t_areas_sistemas   @relation(fields: [id_area], references: [id_area], onDelete: NoAction, onUpdate: NoAction, map: "t_dispositivos_id_area_foreign")
+  t_factura            t_factura          @relation(fields: [id_factura], references: [id_factura], onDelete: NoAction, onUpdate: NoAction, map: "t_dispositivos_id_factura_foreign")
+  t_colaboradores      t_colaboradores    @relation(fields: [num_control], references: [id_colaboradores], onDelete: NoAction, onUpdate: NoAction, map: "t_dispositivos_num_control_foreign")
+}
+
+model t_factura {
+  id_factura         Int              @id(map: "T_factura_pkey") @default(autoincrement())
+  codigo_propietario Int
+  proveedor_alias    String           @db.VarChar(255)
+  razon_social       String           @db.VarChar(255)
+  folio_factura      String           @db.VarChar(255)
+  fact_so            String           @db.VarChar(255)
+  fecha_factura      DateTime         @db.Date
+  moneda             String           @db.VarChar(255)
+  unit_s_iva         Float
+  t_accesorios       t_accesorios[]
+  t_consumibles      t_consumibles[]
+  t_dispositivos     t_dispositivos[]
+  t_propietario      t_propietario    @relation(fields: [codigo_propietario], references: [id_propietario], onDelete: NoAction, onUpdate: NoAction, map: "t_factura_codigo_propietario_foreign")
+  t_refacciones      t_refacciones[]
+}
+
+model t_historial_articulo {
+  id_historial       Int      @id(map: "T_historial_articulo_pkey") @default(autoincrement())
+  id_usuario         Int
+  fecha_modificacion DateTime @db.Date
+  id_dispositivos    Int
+  hostname           String   @db.VarChar(255)
+  ceco_sap_ant       String   @db.VarChar(255)
+  num_control_ant    Int
+  id_movimiento      Int
+}
+
+model t_movimientos {
+  id_movimiento          Int    @id(map: "T_movimientos_pkey") @default(autoincrement())
+  descripcion_movimineto String @db.VarChar(255)
+}
+
+model t_propietario {
+  id_propietario     Int              @id(map: "T_propietario_pkey") @default(autoincrement())
+  codigo_propietario Int
+  nombre             String           @db.VarChar(255)
+  t_accesorios       t_accesorios[]
+  t_consumibles      t_consumibles[]
+  t_dispositivos     t_dispositivos[]
+  t_factura          t_factura[]
+  t_refacciones      t_refacciones[]
+}
+
+model t_refacciones {
+  id_refacciones       Int                @id(map: "T_refacciones_pkey") @default(autoincrement())
+  dispositivo          String             @db.VarChar(255)
+  descripcion_sistemas String             @db.VarChar(255)
+  marca                String             @db.VarChar(255)
+  modelo               String             @db.VarChar(255)
+  num_serie            String             @db.VarChar(255)
+  id_visual            String             @db.VarChar(255)
+  num_sap              Int
+  status               String             @db.VarChar(255)
+  extras               String             @db.VarChar(255)
+  id_area              Int
+  num_control          Int
+  codigo_propietario   Int
+  codigo_ubicacion     Int
+  id_factura           Int
+  t_propietario        t_propietario      @relation(fields: [codigo_propietario], references: [id_propietario], onDelete: NoAction, onUpdate: NoAction, map: "t_refacciones_codigo_propietario_foreign")
+  t_ubicacion_fisica   t_ubicacion_fisica @relation(fields: [codigo_ubicacion], references: [id_ubicacion], onDelete: NoAction, onUpdate: NoAction, map: "t_refacciones_codigo_ubicacion_foreign")
+  t_areas_sistemas     t_areas_sistemas   @relation(fields: [id_area], references: [id_area], onDelete: NoAction, onUpdate: NoAction, map: "t_refacciones_id_area_foreign")
+  t_factura            t_factura          @relation(fields: [id_factura], references: [id_factura], onDelete: NoAction, onUpdate: NoAction, map: "t_refacciones_id_factura_foreign")
+  t_colaboradores      t_colaboradores    @relation(fields: [num_control], references: [id_colaboradores], onDelete: NoAction, onUpdate: NoAction, map: "t_refacciones_num_control_foreign")
+}
+
+model t_roles {
+  id_rol    Int         @id(map: "T_roles_pkey") @default(autoincrement())
+  nombre    String      @db.VarChar(255)
+  t_usuario t_usuario[]
+}
+
+model t_ubicacion_fisica {
+  id_ubicacion     Int              @id(map: "T_ubicacion_fisica_pkey") @default(autoincrement())
+  codigo_ubicacion Int
+  descripcion      String           @db.VarChar(255)
+  t_accesorios     t_accesorios[]
+  t_consumibles    t_consumibles[]
+  t_dispositivos   t_dispositivos[]
+  t_refacciones    t_refacciones[]
+}
+
+model t_usuario {
+  id_usuario      Int             @id(map: "T_usuario_pkey") @default(autoincrement())
+  num_control     Int
+  id_rol          Int
+  contrasena      String          @db.VarChar(255)
+  status          Boolean
+  t_roles         t_roles         @relation(fields: [id_rol], references: [id_rol], onDelete: NoAction, onUpdate: NoAction, map: "t_usuario_id_rol_foreign")
+  t_colaboradores t_colaboradores @relation(fields: [id_usuario], references: [id_colaboradores], onDelete: NoAction, onUpdate: NoAction, map: "t_usuario_id_usuario_foreign")
+}
