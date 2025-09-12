@@ -14,7 +14,7 @@ export class UsuarioMapper {
         return {
             ...(entity.num_control !== undefined && { num_control: entity.num_control }) ?? 0,
             ...(entity.id_rol !== undefined && { id_rol: entity.id_rol }) ?? 0,
-            ...(entity.contrasena !== undefined && { contrasens: entity.contrasena }),
+            ...(entity.contrasena !== undefined && { contrasena: entity.contrasena }),
             ...(entity.status !== undefined && { status: entity.status }),
         };
     }
