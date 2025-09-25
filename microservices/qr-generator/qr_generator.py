@@ -58,7 +58,7 @@ def draw_dashed_rounded_rectangle(draw, box, radius, outline, width, dash_length
             y_end   = cy + radius * math.sin(angle_end)
             draw.line([(x_start, y_start), (x_end, y_end)], fill=outline, width=width)
 
-def generar_etiqueta_reorganizada(numero_serie: int, contador: int, logo1_path=gers_path, logo2_path=ti_path):
+def generar_etiqueta_reorganizada(numero_serie: str, contador: int, logo1_path=gers_path, logo2_path=ti_path):
 
     # --- Datos para QR ---
     id_custom = f"{contador}"
@@ -156,7 +156,7 @@ def generar_etiqueta_reorganizada(numero_serie: int, contador: int, logo1_path=g
         gap_length=5
     )
     # --- Guardar archivo con contador ---
-    nombre_archivo = f"etiqueta_P{numero_serie_str}_{contador:03d}.png"
+    nombre_archivo = f"etiqueta_{numero_serie_str}_{contador:03d}.png"
     ruta_completa = os.path.join(output_dir, nombre_archivo)
     etiqueta.save(ruta_completa, dpi=(300,300))
     print(f"✅ Generada: {nombre_archivo} | ID: {id_custom} | Serie: {numero_serie_str}")

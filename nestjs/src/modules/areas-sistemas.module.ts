@@ -22,11 +22,11 @@ import { DELETE_AREAS_SISTEMAS_PORT } from "src/ports/in/areas-sistemas/delete-a
     providers: [
         PrismaService,
         { provide: AREAS_SISTEMAS_REPOSITORY_PORT, useClass: PrismaAreasSistemasRepository },
-        { provide: GET_AREAS_SISTEMAS_PORT, useClass: GetAreasSistemasService },
+        { provide: GET_AREAS_SISTEMAS_PORT, useClass: GetAreasSistemasService }, 
         { provide: CREATE_AREAS_SISTEMAS_PORT, useClass: CreateAreasSistemasService },
         { provide: UPDATE_AREAS_SISTEMAS_PORT, useClass: UpdateAreasSistemasService },
         { provide: DELETE_AREAS_SISTEMAS_PORT, useClass: DeleteAreasSistemasService }
-    ],
+    ]
 })
 
 export class AreasSistemasModule {}
