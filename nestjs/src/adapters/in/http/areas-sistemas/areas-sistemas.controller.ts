@@ -37,8 +37,13 @@ export class AreasSistemasController {
     @UseInterceptors(CacheInterceptor)
     @CacheKey('get-areas-sistemas')
     @CacheTTL(5)
-    async get(@Query() dto: GetAreasSistemasDto) {
-        return this.getAreaSistemasService.execute(dto);
+    async get(
+        @Query() dto: GetAreasSistemasDto,
+        @Query('page') page: number = 1,
+        @Query('pageSize') pageSize: number = 10
+
+    ) {
+        return this.getAreaSistemasService.execute(dto, page, pageSize);
     }
 
     @Post()

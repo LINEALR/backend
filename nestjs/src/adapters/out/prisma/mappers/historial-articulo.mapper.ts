@@ -3,6 +3,7 @@ import { HistorialArticulo } from "src/domain/historial-articulo/historial-artic
 export class HistorialArticuloMapper {
     static toPrisma(entity: HistorialArticulo) {
         return {
+            id_historial: entity.id_historial,
             id_usuario: entity.id_usuario,
             fecha_modificacion: entity.fecha_modificacion,
             id_dispositivos: entity. id_dispositivos,
@@ -15,6 +16,7 @@ export class HistorialArticuloMapper {
 
     static partialToPrisma(entity: Partial<HistorialArticulo>) {
         return {
+            ...(entity.id_historial !== undefined && { id_historial: entity.id_historial }) ?? 0,
             ...(entity.id_usuario !== undefined && { id_usuario: entity.id_usuario }) ?? 0,
             ...(entity.fecha_modificacion !== undefined && { fecha_modificacion: entity.fecha_modificacion }),
             ...(entity.id_dispositivos !== undefined && { id_dispositivos: entity.id_dispositivos }) ?? 0,
@@ -27,6 +29,7 @@ export class HistorialArticuloMapper {
 
     static toDomain(raw: any): HistorialArticulo {
         return new HistorialArticulo({
+            id_historial: raw.id_historial,
             id_usuario: raw.id_usuario,
             fecha_modificacion: raw.fecha_modificacion,
             id_dispositivos: raw. id_dispositivos,

@@ -5,9 +5,15 @@ import { PROPIETARO_REPOSITORY_PORT, type PropietarioRepositoryPort } from "src/
 
 @Injectable()
 export class GetPropietarioService implements GetPropietario {
-    constructor(@Inject(PROPIETARO_REPOSITORY_PORT) private readonly repo: PropietarioRepositoryPort) {}
+    constructor(@Inject(PROPIETARO_REPOSITORY_PORT) private readonly repo: PropietarioRepositoryPort) { }
 
-    async execute(search: Partial<Propietario>): Promise<Propietario[]> {
+    async execute(search: Partial<Propietario>, page = 1, pageSize = 10):
+        Promise<{
+            propietario: Propietario[];
+            total: number;
+            totalPages: number;
+            currentPage: number;
+        }> {
         const propietario = await this.repo.get(search);
 
         if (!propietario) {

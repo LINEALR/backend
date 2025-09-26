@@ -6,11 +6,17 @@ import { USUARIO_REPOSITORY_PORT } from "src/ports/out/usuario-repository.port";
 
 @Injectable()
 export class GetUsuariosService implements GetUsuario {
-    constructor(@Inject(USUARIO_REPOSITORY_PORT) private readonly repo: UsuarioRepositoryPort) {}
-    
-    async execute(usuarios: Partial<Usuario>): Promise<Usuario[] | null> {
+    constructor(@Inject(USUARIO_REPOSITORY_PORT) private readonly repo: UsuarioRepositoryPort) { }
+
+    async execute(usuarios: Partial<Usuario>, page = 1, pageSize = 10):
+        Promise<{
+            usuario: Usuario[];
+            total: number;
+            totalPages: number;
+            currentPage: number;
+        }> {
         const usuario = await this.repo.get(usuarios);
-        if(!usuario){
+        if (!usuario) {
             throw new Error('Usuario ya existente')
         }
         return usuario;

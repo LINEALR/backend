@@ -1,31 +1,43 @@
-import { IsInt, IsOptional, IsString, IsDate } from "class-validator";
+import { IsInt, IsOptional, IsString, IsDate, Min } from "class-validator";
 import { Type } from "class-transformer";
 
 export class GetHistorialArticuloDto {
     @IsOptional()
     @Type(() => Number)
     @IsInt()
-        id_usuario: number;
+    id_usuario: number;
     @IsOptional()
     @Type(() => Date)
     @IsInt()
-        fecha_modificacion: Date;
+    fecha_modificacion: Date;
     @IsOptional()
     @Type(() => Number)
     @IsInt()
-        id_dispositivos: number;
+    id_dispositivos: number;
     @IsOptional()
     @IsString()
-        hostname: string;
+    hostname: string;
     @IsOptional()
     @IsString()
-        ceco_sap_ant: string;
+    ceco_sap_ant: string;
     @IsOptional()
     @Type(() => Number)
     @IsInt()
-        num_conrol_ant: number;
+    num_conrol_ant: number;
     @IsOptional()
     @Type(() => Number)
     @IsInt()
-        id_movimiento: number;
+    id_movimiento: number;
+
+    @IsOptional()
+    @Type(() => Number)
+    @IsInt()
+    @Min(1)
+    page?: number = 1;
+
+    @IsOptional()
+    @Type(() => Number)
+    @IsInt()
+    @Min(1)
+    pageSize?: number = 10;
 }

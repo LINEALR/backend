@@ -6,15 +6,35 @@ import { ColaboradoresMapper } from "./mappers/colaboradores.mapper";
 
 @Injectable()
 export class PrismaColaboradoresRepository implements ColaboradoresRepository {
-    constructor(private readonly prisma: PrismaService) {}
+    constructor(private readonly prisma: PrismaService) { }
 
-    async get(search: Partial<Colaboradores>): Promise<Colaboradores[]> {
+    async get(search: Partial<Colaboradores> = {}, page: number = 1, pageSize: number = 10):
+        Promise<{
+            colaboradores: Colaboradores[];
+            total: number;
+            totalPages: number;
+            currentPage: number;
+        }> {
+        const { page: _page, pageSize: _pageSize, ...filters } = search as any;
         const where = Object.fromEntries(
-            Object.entries(search ?? {}).filter(([_, value]) => value !== undefined && value !== null)
+            Object.entries(filters).filter(([_, value]) => value !== undefined && value !== null)
         );
 
-        const colaboradores = await this.prisma.t_colaboradores.findMany({ where });
-        return colaboradores.map(col => ColaboradoresMapper.toDomain(col));
+        const skip = (page - 1) * pageSize;
+        const take = pageSize;
+
+        const total = await this.prisma.t_colaboradores.count({ where });
+        const colaboradores = await this.prisma.t_colaboradores.findMany({
+            where,
+            skip,
+            take,
+        })
+        return {
+            colaboradores: colaboradores.map(ColaboradoresMapper.toDomain),
+            total,
+            totalPages: Math.ceil(total / pageSize),
+            currentPage: page
+        }
     }
 
     async create(colaboradores: Colaboradores): Promise<Colaboradores> {

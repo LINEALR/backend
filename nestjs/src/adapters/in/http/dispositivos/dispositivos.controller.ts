@@ -38,8 +38,12 @@ export class DispositivosController {
     @UseInterceptors(CacheInterceptor)
     @CacheKey('obtain-dispositivos')
     @CacheTTL(5)
-    async get(@Query() dto: GetDispositivosDto){
-        return this.getDispositivosService.execute(dto);
+    async get(
+        @Query() dto: GetDispositivosDto,
+        @Query('page') page: number = 1,
+        @Query('pageSize') pageSize: number = 10
+    ){
+        return this.getDispositivosService.execute(dto, page, pageSize);
     }
 
     @Post()

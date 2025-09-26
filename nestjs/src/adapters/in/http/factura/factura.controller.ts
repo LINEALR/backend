@@ -30,8 +30,12 @@ export class FacturaController {
     @UseInterceptors(CacheInterceptor)
     @CacheKey('get-factura')
     @CacheTTL(5)
-    async get(@Query() dto: GetFacturaDto) {
-        return this.getFacturaService.execute(dto);
+    async get(
+        @Query() dto: GetFacturaDto,
+        @Query('page') page: number = 1,
+        @Query('pageSize') pageSize: number = 10
+    ) {
+        return this.getFacturaService.execute(dto, page, pageSize);
     }
 
     @Post()

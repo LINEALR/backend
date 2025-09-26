@@ -6,9 +6,15 @@ import { FACTURA_REPOSITORY_PORT } from "src/ports/out/factura-repository.port";
 
 @Injectable()
 export class GetFacturaService implements GetFactura {
-    constructor(@Inject(FACTURA_REPOSITORY_PORT) private readonly repo: FacturaRepositoryPort) {}
+    constructor(@Inject(FACTURA_REPOSITORY_PORT) private readonly repo: FacturaRepositoryPort) { }
 
-    async execute(search: Partial<Factura>): Promise<Factura[]> {
+    async execute(search: Partial<Factura>, page = 1, pageSize = 10):
+        Promise<{
+            factura: Factura[];
+            total: number;
+            totalPages: number;
+            currentPage: number;
+        }> {
         const factura = await this.repo.get(search);
         if (!factura) {
             throw new Error('Error')

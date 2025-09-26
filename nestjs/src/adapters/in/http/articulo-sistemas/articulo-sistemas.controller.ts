@@ -35,8 +35,12 @@ export class ArticuloSistemasController {
     @UseInterceptors(CacheInterceptor)
     @CacheKey('get-articulo-sistemas')
     @CacheTTL(5)
-    async get(@Query() dto: GetArticuloSistemasDto) {
-        return this.getArticuloSistemasService.execute(dto);
+    async get(
+        @Query() dto: GetArticuloSistemasDto,
+        @Query('page') page: number = 1,
+        @Query('pageSize') pageSize: number = 10
+    ) {
+        return this.getArticuloSistemasService.execute(dto, page, pageSize);
     }
 
     @Post()

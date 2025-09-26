@@ -8,12 +8,34 @@ import { UsuarioMapper } from "./mappers/usuario.mapper";
 export class PrismaUsuariosRepository implements UsuarioRepository {
     constructor(private readonly prisma: PrismaService) { }
 
-    async get(search: Partial<Usuario>): Promise<Usuario[]> {
+    async get(search: Partial<Usuario> = {}, page: number = 1, pageSize: number = 10):
+        Promise<{
+            usuario: Usuario[];
+            total: number;
+            totalPages: number;
+            currentPage: number;
+        }> {
+        const { page: _page, pageSize: _pageSize, ...filters } = search as any;
         const where = Object.fromEntries(
-            Object.entries(search ?? {}).filter(([_, value]) => value !== undefined && value !== null)
+            Object.entries(filters).filter(([_, value]) => value !== undefined && value !== null)
         );
-        const usuario = await this.prisma.t_usuario.findMany({ where });
-        return usuario.map(col => UsuarioMapper.toDomain(col))
+
+        const skip = (page - 1) * pageSize;
+        const take = pageSize;
+
+        const total = await this.prisma.t_usuario.count({ where });
+        const usuario = await this.prisma.t_usuario.findMany({
+            where,
+            skip,
+            take,
+        })
+
+        return {
+            usuario: usuario.map(UsuarioMapper.toDomain),
+            total,
+            totalPages: Math.ceil(total / pageSize),
+            currentPage: page
+        }
     }
 
     async create(usuario: Usuario): Promise<Usuario> {

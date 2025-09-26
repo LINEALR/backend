@@ -30,8 +30,12 @@ export class HistorialArticuloController {
     @UseInterceptors(CacheInterceptor)
     @CacheKey('get-historial-articulo')
     @CacheTTL(5)
-    async get(@Query() dto: GetHistorialArticuloDto) {
-        return this.getHistorialArticuloService.execute(dto);
+    async get(
+        @Query() dto: GetHistorialArticuloDto,
+        @Query('page') page: number = 1,
+        @Query('pageSize') pageSize: number = 10
+    ) {
+        return this.getHistorialArticuloService.execute(dto, page, pageSize);
     }
 
     @Post()

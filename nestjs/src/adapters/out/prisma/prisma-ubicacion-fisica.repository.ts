@@ -8,13 +8,34 @@ import { UbicacionFisicaMapper } from "./mappers/ubicacion-fisica.mapper";
 export class PrismaUbiacionFisicaRepository implements UbicacionFisicaRepository {
     constructor(private readonly prisma: PrismaService) { }
 
-    async get(search: Partial<UbicacionFisica>): Promise<UbicacionFisica[]> {
+    async get(search: Partial<UbicacionFisica> = {}, page: number = 1, pageSize: number = 10):
+        Promise<{
+            ubicacionFisica: UbicacionFisica[];
+            total: number;
+            totalPages: number;
+            currentPage: number;
+        }> {
+        const { page: _page, pageSize: _pageSize, ...filters } = search as any;
         const where = Object.fromEntries(
-            Object.entries(search ?? {}).filter(([_, value]) => value !== undefined && value !== null)
+            Object.entries(filters).filter(([_, value]) => value !== undefined && value !== null)
         );
 
-        const ubicacion_fisica = await this.prisma.t_ubicacion_fisica.findMany({ where });
-        return ubicacion_fisica.map(col => UbicacionFisicaMapper.toDomain(col));
+        const skip = (page - 1) * pageSize;
+        const take = pageSize;
+
+        const total = await this.prisma.t_ubicacion_fisica.count({ where });
+        const ubicacion_fisica = await this.prisma.t_ubicacion_fisica.findMany({
+            where,
+            skip,
+            take,
+        })
+
+        return {
+            ubicacion_fisica: ubicacion_fisica.map(UbicacionFisicaMapper.toDomain),
+            total,
+            totalPages: Math.ceil(total / pageSize),
+            currentPage: page
+        }
     }
 
     async create(ubicacion_fisica: UbicacionFisica): Promise<UbicacionFisica> {

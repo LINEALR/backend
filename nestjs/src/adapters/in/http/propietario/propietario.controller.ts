@@ -28,8 +28,12 @@ export class PropietarioController {
     @UseInterceptors(CacheInterceptor)
     @CacheKey('get-propietario')
     @CacheTTL(5)
-    async get(@Query() dto: GetPropietarioDto) {
-        return this.getPropietarioService.execute(dto);
+    async get(
+        @Query() dto: GetPropietarioDto,
+        @Query('page') page: number = 1,
+        @Query('pageSize') pageSize: number = 10
+    ) {
+        return this.getPropietarioService.execute(dto, page, pageSize);
     }
 
     @Post()

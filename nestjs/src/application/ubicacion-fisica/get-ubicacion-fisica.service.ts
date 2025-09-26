@@ -5,9 +5,15 @@ import { UBICACION_FISICA_REPOSITORY_PORT, type UbicacionFisicaRepositoryPort } 
 
 @Injectable()
 export class GetUbicacionFisicaService implements GetUbicacionFisica {
-    constructor(@Inject(UBICACION_FISICA_REPOSITORY_PORT) private readonly repo: UbicacionFisicaRepositoryPort) {}
+    constructor(@Inject(UBICACION_FISICA_REPOSITORY_PORT) private readonly repo: UbicacionFisicaRepositoryPort) { }
 
-    async execute(search: Partial<UbicacionFisica>): Promise<UbicacionFisica[]> {
+    async execute(search: Partial<UbicacionFisica>, page = 1, pageSize = 10):
+        Promise<{
+            ubicacionFisica: UbicacionFisica[];
+            total: number;
+            totalPages: number;
+            currentPage: number;
+        }> {
         const ubicacion_fisica = await this.repo.get(search);
         if (!ubicacion_fisica) {
             throw new Error('Error');

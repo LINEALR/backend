@@ -3,6 +3,7 @@ import { Factura } from "src/domain/factura/factura.entity";
 export class FacturaMapper {
     static toPrisma(entity: Factura) {
         return {
+            id_factura: entity.id_factura,
             codigo_propietario: entity.codigo_propietario,
             proveedor_alias: entity.proveedor_alias,
             razon_social: entity.razon_social,
@@ -16,6 +17,7 @@ export class FacturaMapper {
 
     static partialToPrisma(entity: Partial<Factura>) {
         return {
+            ...(entity.id_factura !== undefined && { id_factura: entity.id_factura }) ?? 0,
             ...(entity.codigo_propietario !== undefined && { codigo_propietario: entity.codigo_propietario }) ?? 0,
             ...(entity.proveedor_alias !== undefined && { proveedor_alias: entity.proveedor_alias }),
             ...(entity.razon_social !== undefined && { razon_social: entity.razon_social }),
@@ -29,6 +31,7 @@ export class FacturaMapper {
 
     static toDomain(raw: any): Factura {
         return {
+            id_factura: raw.id_factura,
             codigo_propietario: raw.codigo_propietario,
             proveedor_alias: raw.proveedor_alias,
             razon_social: raw.razon_social,

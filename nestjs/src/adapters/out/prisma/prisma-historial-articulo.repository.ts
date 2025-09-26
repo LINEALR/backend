@@ -8,13 +8,34 @@ import { HistorialArticuloMapper } from "./mappers/historial-articulo.mapper";
 export class PrismaHistorialArticulosRepository implements HistorialArticuloRepository {
     constructor(private readonly prisma: PrismaService) { }
 
-    async get(search: Partial<HistorialArticulo>): Promise<HistorialArticulo[]> {
+    async get(search: Partial<HistorialArticulo> = {}, page: number = 1, pageSize: number = 10):
+        Promise<{
+            historialArticulo: HistorialArticulo[];
+            total: number;
+            totalPages: number;
+            currentPage: number;
+        }> {
+        const { page: _page, pageSize: _pageSize, ...filters } = search as any;
         const where = Object.fromEntries(
-            Object.entries(search ?? {}).filter(([_, value]) => value !== undefined && value !== null)
+            Object.entries(filters).filter(([_, value]) => value !== undefined && value !== null)
         );
 
-        const historial_articulo = await this.prisma.t_historial_articulo.findMany({ where });
-        return historial_articulo.map(col => HistorialArticuloMapper.toDomain(col));
+        const skip = (page - 1) * pageSize;
+        const take = pageSize;
+
+        const total = await this.prisma.t_historial_articulo.count({ where });
+        const historial_articulo = await this.prisma.t_historial_articulo.findMany({
+            where,
+            skip,
+            take,
+        })
+
+        return {
+            historial_articulo: historial_articulo.map(HistorialArticuloMapper.toDomain),
+            total,
+            totalPages: Math.ceil(total / pageSize),
+            currentPage: page
+        }
     }
 
 

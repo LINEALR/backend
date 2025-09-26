@@ -1,4 +1,4 @@
-import { IsInt, IsOptional, IsString } from "class-validator";
+import { IsInt, IsOptional, IsString, Min } from "class-validator";
 import { Type } from "class-transformer";
 
 export class GetDispositivosDto {
@@ -65,4 +65,16 @@ export class GetDispositivosDto {
     @Type(() => Number) 
     @IsInt()
     id_factura: number;
+    
+    @IsOptional()
+    @Type(() => Number)
+    @IsInt()
+    @Min(1)
+    page?: number = 1;
+
+    @IsOptional()
+    @Type(() => Number)
+    @IsInt()
+    @Min(1)
+    pageSize?: number = 10;
 }

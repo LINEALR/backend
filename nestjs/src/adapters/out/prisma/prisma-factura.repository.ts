@@ -6,15 +6,36 @@ import { FacturaMapper } from "./mappers/factura.mapper";
 
 @Injectable()
 export class PrismaFacturaRepositoryi implements FacturaRepository {
-    constructor(private readonly prisma: PrismaService) {}
+    constructor(private readonly prisma: PrismaService) { }
 
-    async get(search: Partial<Factura>): Promise<Factura[]> {
+    async get(search: Partial<Factura> = {}, page: number = 1, pageSize: number = 10):
+        Promise<{
+            factura: Factura[];
+            total: number;
+            totalPages: number;
+            currentPage: number;
+        }> {
+        const { page: _page, pageSize: _pageSize, ...filters } = search as any;
         const where = Object.fromEntries(
-            Object.entries(search ?? {}).filter(([_, value]) => value !== undefined && value !== null)
+            Object.entries(filters).filter(([_, value]) => value !== undefined && value !== null)
         );
 
-        const factura = await this.prisma.t_factura.findMany({ where });
-        return factura.map(col => FacturaMapper.toDomain(col));
+        const skip = (page - 1) * pageSize;
+        const take = pageSize;
+
+        const total = await this.prisma.t_factura.count({ where });
+        const factura = await this.prisma.t_factura.findMany({
+            where,
+            skip,
+            take,
+        })
+
+        return {
+            factura: factura.map(FacturaMapper.toDomain),
+            total,
+            totalPages: Math.ceil(total / pageSize),
+            currentPage: page
+        }
     }
 
     async create(factura: Factura): Promise<Factura> {
@@ -31,6 +52,6 @@ export class PrismaFacturaRepositoryi implements FacturaRepository {
     }
 
     async delete(id_factura: number): Promise<void> {
-        await this.prisma.t_factura.delete({ where: { id_factura: id_factura}});
+        await this.prisma.t_factura.delete({ where: { id_factura: id_factura } });
     }
 }

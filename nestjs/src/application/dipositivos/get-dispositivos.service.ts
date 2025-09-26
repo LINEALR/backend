@@ -6,12 +6,18 @@ import { DISPOSITIVOS_REPOSITORY_PORT } from "src/ports/out/dispositivos-reposit
 
 @Injectable()
 export class GetDispositivosService implements GetDispositivos {
-    constructor(@Inject(DISPOSITIVOS_REPOSITORY_PORT) private readonly repo: DispositivosRepositoryPort) {}
-    
-    async execute(disposivos: Partial<Dispositivos>): Promise<Dispositivos[] | null> {
-        const dispositivo = await this.repo.get(disposivos);
+    constructor(@Inject(DISPOSITIVOS_REPOSITORY_PORT) private readonly repo: DispositivosRepositoryPort) { }
+
+    async execute(search: Partial<Dispositivos>, page = 1, pageSize = 10):
+        Promise<{
+            dispositivos: Dispositivos[];
+            total: number;
+            totalPages: number;
+            currentPage: number;
+        }> {
+        const dispositivo = await this.repo.get(search, page, pageSize);
         if (!dispositivo) {
-            throw new Error (`Dispositivo con la información ${dispositivo} no encontrado`);
+            throw new Error(`Dispositivo con la información ${dispositivo} no encontrado`);
         }
         return dispositivo
     }

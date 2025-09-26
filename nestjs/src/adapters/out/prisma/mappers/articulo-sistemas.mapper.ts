@@ -3,6 +3,7 @@ import { ArticuloSistemas } from "src/domain/articulo-sistemas/articulo-sistemas
 export class ArticuloSistemasMapper {
     static toPrisma(entity: ArticuloSistemas) {
         return {
+            id_articulo: entity.id_articulo,
             codigo_articulo: entity.codigo_articulo,
             descripcion: entity.descripcion,
             identificador: entity.identificador,
@@ -12,6 +13,7 @@ export class ArticuloSistemasMapper {
 
     static partialToPrima(entity: Partial<ArticuloSistemas>) {
         return {
+            ...(entity.id_articulo !== undefined && { id_articulo: entity.id_articulo }) ?? 0,
             ...(entity.codigo_articulo !== undefined && { codigo_articulo: entity.codigo_articulo }) ?? 0,
             ...(entity.descripcion !== undefined && { descripcion: entity.descripcion }),
             ...(entity.identificador !== undefined && { identificador: entity.identificador }),
@@ -19,7 +21,7 @@ export class ArticuloSistemasMapper {
         }
     }
 
-    static toDomian(raw: any): ArticuloSistemas {
+    static toDomain(raw: any): ArticuloSistemas {
         return new ArticuloSistemas({
             id_articulo: raw.id_articulo,
             codigo_articulo: raw.codigo_articulo,

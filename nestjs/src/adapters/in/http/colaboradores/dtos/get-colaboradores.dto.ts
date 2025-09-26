@@ -1,4 +1,4 @@
-import { IsInt, IsOptional, IsString } from "class-validator";
+import { IsInt, IsOptional, IsString, Min } from "class-validator";
 import { Type } from "class-transformer";
 
 export class GetColaboradoresDto {
@@ -19,4 +19,16 @@ export class GetColaboradoresDto {
     @Type(() => Number)
     @IsInt()
     id_area?: number;
+    
+    @IsOptional()
+    @Type(() => Number)
+    @IsInt()
+    @Min(1)
+    page?: number = 1;
+
+    @IsOptional()
+    @Type(() => Number)
+    @IsInt()
+    @Min(1)
+    pageSize?: number = 10;
 } 

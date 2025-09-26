@@ -8,8 +8,14 @@ import { ARTICULO_SISTEMAS_REPOSITORY_PORT } from "src/ports/out/articulo-sistem
 export class GetArticuloSistemasService implements GetArticuloSistemas {
     constructor(@Inject(ARTICULO_SISTEMAS_REPOSITORY_PORT) private readonly repo: ArticuloSistemasRepositoryPort) { }
 
-    async execute(search: Partial<ArticuloSistemas>): Promise<ArticuloSistemas[]> {
-        const articulo_sistemas = await this.repo.get(search);
+    async execute(search: Partial<ArticuloSistemas>, page = 1, pageSize = 10):
+        Promise<{
+            articuloSistemas: ArticuloSistemas[];
+            total: number;
+            totalPages: number;
+            currentPage: number;
+        }> {
+        const articulo_sistemas = await this.repo.get(search, page, pageSize);
         if (!articulo_sistemas) {
             throw Error('Error en la consulta');
         }

@@ -3,6 +3,7 @@ import { Dispositivos } from "src/domain/dispositivo/dispositivos.entity";
 export class DispositivosMapper {
     static toPrisma(entity: Dispositivos) {
         return {
+            id_dispositivos: entity.id_dispositivos,
             dispositivo: entity.dispositivo,
             descripcion_sistemas: entity.descripcion_sistemas,
             marca: entity.marca,
@@ -22,6 +23,7 @@ export class DispositivosMapper {
 
     static partialToPrisma(entity: Partial<Dispositivos>) {
         return {
+            ...(entity.id_dispositivos !== undefined && { dispositivo: entity.id_dispositivos }),
             ...(entity.dispositivo !== undefined && { dispositivo: entity.dispositivo }),
             ...(entity.descripcion_sistemas !== undefined && { descripcion_sistemas: entity.descripcion_sistemas }),
             ...(entity.marca !== undefined && { marca: entity.marca }),
@@ -41,6 +43,7 @@ export class DispositivosMapper {
 
     static toDomain(raw: any): Dispositivos {
     return new Dispositivos({
+        id_dispositivos: raw.id_dispositivos,
         dispositivo: raw.dispositivo,
         descripcion_sistemas: raw.descripcion_sistemas,
         marca: raw.marca,

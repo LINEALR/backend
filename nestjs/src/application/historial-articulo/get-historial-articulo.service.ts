@@ -5,11 +5,17 @@ import { HISTORIAL_ARTICULO_REPOSITORY_PORT, type HistorialArticuloRepositoryPor
 
 @Injectable()
 export class GetHistorialArticuloService implements GetHistorialArticulo {
-    constructor(@Inject(HISTORIAL_ARTICULO_REPOSITORY_PORT) private readonly repo: HistorialArticuloRepositoryPort) {}
+    constructor(@Inject(HISTORIAL_ARTICULO_REPOSITORY_PORT) private readonly repo: HistorialArticuloRepositoryPort) { }
 
-    async execute(search: Partial<HistorialArticulo>): Promise<HistorialArticulo[]> {
+    async execute(search: Partial<HistorialArticulo>, page = 1, pageSize = 10):
+        Promise<{
+            historialArticulo: HistorialArticulo[];
+            total: number;
+            totalPages: number;
+            currentPage: number;
+        }> {
         const historial_articulo = await this.repo.get(search);
-        if(historial_articulo) {
+        if (historial_articulo) {
             throw new Error('Error')
         }
         return historial_articulo;

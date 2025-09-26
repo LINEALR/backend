@@ -5,10 +5,16 @@ import { COLABORADORES_REPOSITORY_PORT, type ColaboradoresRepositoryPort } from 
 
 @Injectable()
 export class GetColaboradoresService implements GetColaboradores {
-    constructor(@Inject(COLABORADORES_REPOSITORY_PORT) private readonly repo: ColaboradoresRepositoryPort) {}
+    constructor(@Inject(COLABORADORES_REPOSITORY_PORT) private readonly repo: ColaboradoresRepositoryPort) { }
 
-    async execute(search: Partial<Colaboradores>): Promise<Colaboradores[]> {
-        const colaborador = await this.repo.get(search);
+    async execute(search: Partial<Colaboradores>, page = 1, pageSize = 10):
+        Promise<{
+            colaboradores: Colaboradores[];
+            total: number;
+            totalPages: number;
+            currentPage: number;
+        }> {
+        const colaborador = await this.repo.get(search, page, pageSize);
         if (!colaborador) {
             throw new Error(`Colaborador con la informacion ${colaborador} no encontrado`);
         }

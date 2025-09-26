@@ -30,8 +30,12 @@ export class UbicacionFisicaController {
     @UseInterceptors(CacheInterceptor)
     @CacheKey('get-ubicacion-fisica')
     @CacheTTL(5)
-    async get(@Query() dto: GetUbicacionFisicaDto) {
-        return this.getUbicacionFisicaService.execute(dto);
+    async get(
+        @Query() dto: GetUbicacionFisicaDto, 
+        @Query('page') page: number = 1,
+        @Query('pageSize') pageSize: number = 10
+    ) {
+        return this.getUbicacionFisicaService.execute(dto, page, pageSize);
     }
 
     @Post()

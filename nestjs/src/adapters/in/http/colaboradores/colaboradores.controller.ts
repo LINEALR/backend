@@ -30,8 +30,12 @@ export class ColaboradoresController {
     @UseInterceptors(CacheInterceptor)
     @CacheKey('get-colaborador')
     @CacheTTL(5)
-    async get(@Query() dto: GetColaboradoresDto) {
-        return this.getColaboradoresService.execute(dto);
+    async get(
+        @Query() dto: GetColaboradoresDto,
+        @Query('page') page: number = 1,
+        @Query('pageSize') pageSize: number = 10
+    ) {
+        return this.getColaboradoresService.execute(dto, page, pageSize);
     }
 
     @Post()

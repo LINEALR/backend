@@ -38,8 +38,12 @@ export class UsuarioController {
     @UseInterceptors(CacheInterceptor)
     @CacheKey('get-usuario')
     @CacheTTL(5)
-    async get(@Query() dto:GetUsuarioDto) {
-        return this.getUsuarioService.execute(dto);
+    async get(
+        @Query() dto: GetUsuarioDto,
+        @Query('page') page: number = 1,
+        @Query('pageSize') pageSize: number = 10
+    ) {
+        return this.getUsuarioService.execute(dto, page, pageSize);
     }
     @Post()
     @UseInterceptors(CacheInterceptor)
@@ -60,8 +64,8 @@ export class UsuarioController {
         return this.updateUsuariSerivce.execute(Number(id_usuario), dto);
     }
 
-    async delete(@Param('id_usuario') id_usuario: number): Promise<{message: string}> {
+    async delete(@Param('id_usuario') id_usuario: number): Promise<{ message: string }> {
         await this.delteUsuarioService.execute(Number(id_usuario));
-        return { message: "Usuario Eliminado Correctamente"};
+        return { message: "Usuario Eliminado Correctamente" };
     }
 }

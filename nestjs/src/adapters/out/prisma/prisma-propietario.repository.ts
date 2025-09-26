@@ -9,13 +9,34 @@ import { PropietarioMapper } from "./mappers/propietario.mapper";
 export class PrismaPropietarioRepository implements PropietarioRepository {
     constructor(private readonly prisma: PrismaService) { }
 
-    async get(search: Partial<Propietario>): Promise<Propietario[]> {
+    async get(search: Partial<Propietario> = {}, page: number = 1, pageSize: number = 10):
+        Promise<{
+            propietario: Propietario[];
+            total: number;
+            totalPages: number;
+            currentPage: number;
+        }> {
+        const { page: _page, pageSize: _pageSize, ...filters } = search as any;
         const where = Object.fromEntries(
-            Object.entries(search ?? {}).filter(([_, value]) => value !== undefined && value !== null)
+            Object.entries(filters).filter(([_, value]) => value !== undefined && value !== null)
         );
 
-        const propietario = await this.prisma.t_propietario.findMany({ where });
-        return propietario.map(col => PropietarioMapper.toDomain(col));
+        const skip = (page - 1) * pageSize;
+        const take = pageSize;
+
+        const total = await this.prisma.t_propietario.count({ where });
+        const propietario = await this.prisma.t_propietario.findMany({
+            where,
+            skip,
+            take,
+        })
+
+        return {
+            propietario: propietario.map(PropietarioMapper.toDomain),
+            total,
+            totalPages: Math.ceil(total / pageSize),
+            currentPage: page
+        }
     }
 
     async create(propietario: Propietario): Promise<Propietario> {

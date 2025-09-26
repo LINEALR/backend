@@ -3,6 +3,7 @@ import { Colaboradores } from "src/domain/colaboradores/colaboradores.entity";
 export class ColaboradoresMapper {
     static toPrisma(entity: Colaboradores) {
         return {
+            id_colaboradores: entity.id_colaboradores,
             num_control: entity.num_control,
             nombre: entity.nombre,
             correo: entity.correo,
@@ -12,6 +13,7 @@ export class ColaboradoresMapper {
 
     static partialToPrisma(entity: Partial<Colaboradores>) {
         return {
+            ...(entity.id_colaboradores !== undefined && { num_control: entity.id_colaboradores }) ?? 0,
             ...(entity.num_control !== undefined && { num_control: entity.num_control }) ?? 0,
             ...(entity.nombre !== undefined && { nombre: entity.nombre }),
             ...(entity.correo !== undefined && { correo: entity.correo }),
