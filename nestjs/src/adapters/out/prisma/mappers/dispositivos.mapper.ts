@@ -23,7 +23,7 @@ export class DispositivosMapper {
 
     static partialToPrisma(entity: Partial<Dispositivos>) {
         return {
-            ...(entity.id_dispositivos !== undefined && { dispositivo: entity.id_dispositivos }),
+            ...(entity.id_dispositivos !== undefined && { id_dispositivo: entity.id_dispositivos }) ?? 0,
             ...(entity.dispositivo !== undefined && { dispositivo: entity.dispositivo }),
             ...(entity.descripcion_sistemas !== undefined && { descripcion_sistemas: entity.descripcion_sistemas }),
             ...(entity.marca !== undefined && { marca: entity.marca }),

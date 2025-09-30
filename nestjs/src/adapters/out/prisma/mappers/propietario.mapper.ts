@@ -11,7 +11,7 @@ export class PropietarioMapper {
 
     static partialToPrisma(entity: Partial<Propietario>) {
         return {
-            ...(entity.id_propietario !== undefined && { id_propietario: entity.id_propietario }),
+            ...(entity.id_propietario !== undefined && { id_propietario: entity.id_propietario }) ?? 0,
             ...(entity.codigo_propietario !== undefined && { codigo_propietario: entity.codigo_propietario }),
             ...(entity.nombre !== undefined && { nombre: entity.nombre })
         }

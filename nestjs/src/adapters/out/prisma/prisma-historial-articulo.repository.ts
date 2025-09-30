@@ -31,7 +31,7 @@ export class PrismaHistorialArticulosRepository implements HistorialArticuloRepo
         })
 
         return {
-            historial_articulo: historial_articulo.map(HistorialArticuloMapper.toDomain),
+            historialArticulo: historial_articulo.map(HistorialArticuloMapper.toDomain),
             total,
             totalPages: Math.ceil(total / pageSize),
             currentPage: page

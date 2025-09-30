@@ -31,7 +31,7 @@ export class PrismaUbiacionFisicaRepository implements UbicacionFisicaRepository
         })
 
         return {
-            ubicacion_fisica: ubicacion_fisica.map(UbicacionFisicaMapper.toDomain),
+            ubicacionFisica: ubicacion_fisica.map(UbicacionFisicaMapper.toDomain),
             total,
             totalPages: Math.ceil(total / pageSize),
             currentPage: page

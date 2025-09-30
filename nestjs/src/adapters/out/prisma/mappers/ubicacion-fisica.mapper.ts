@@ -12,7 +12,7 @@ export class UbicacionFisicaMapper {
 
     static partialToPrisma(entity: Partial<UbicacionFisica>) {
         return {
-            ...(entity.id_ubicacion !== undefined && { id_ubicacion: entity.id_ubicacion }),
+            ...(entity.id_ubicacion !== undefined && { id_ubicacion: entity.id_ubicacion }) ?? 0,
             ...(entity.codigo_ubicacion !== undefined && { codigo_ubicacion: entity.codigo_ubicacion }),
             ...(entity.descripcion !== undefined && { nombre: entity.descripcion })
         }

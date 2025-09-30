@@ -3,7 +3,7 @@ import { HistorialArticulo } from "./historial-articulo.entity";
 export interface HistorialArticuloRepository {
     get(search: Partial<HistorialArticulo>, page?: number, pageSize?: number):
         Promise<{
-            historial: HistorialArticulo[];
+            historialArticulo: HistorialArticulo[];
             total: number;
             totalPages: number;
             currentPage: number;

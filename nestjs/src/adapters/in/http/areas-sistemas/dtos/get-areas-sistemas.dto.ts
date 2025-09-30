@@ -1,4 +1,4 @@
-import { IsInt, IsOptional, IsString, Min } from "class-validator";
+import { IsInt, IsOptional, IsString, Max, Min } from "class-validator";
 import { Type } from "class-transformer";
 
 export class GetAreasSistemasDto {
@@ -26,5 +26,6 @@ export class GetAreasSistemasDto {
     @Type(() => Number)
     @IsInt()
     @Min(1)
+    @Max(15)
     pageSize?: number = 10;
 }
