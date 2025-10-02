@@ -3,7 +3,6 @@ import { AreasSistemas } from "src/domain/areas-sistemas/areas-sistemas.entity";
 export class AreasSistemasMapper {
     static toPrisma(entity: AreasSistemas) {
         return {
-            id_area: entity.id_area,
             ceco_sap: entity.ceco_sap,
             descripcion_ceco: entity.descripcion_ceco,
             area_sistemas: entity.area_sistemas,
@@ -12,7 +11,6 @@ export class AreasSistemasMapper {
 
     static partialToPrisma(entity: Partial<AreasSistemas>) {
         return {
-            ...(entity.id_area !== undefined && { id_area: entity.id_area}) ?? 0,
             ...(entity.ceco_sap !== undefined && { ceco_sap: entity.ceco_sap}),
             ...(entity.descripcion_ceco !== undefined && { descripcion_ceco: entity.descripcion_ceco }),
             ...(entity.area_sistemas !== undefined && { area_sistemas: entity.area_sistemas }) ?? 0

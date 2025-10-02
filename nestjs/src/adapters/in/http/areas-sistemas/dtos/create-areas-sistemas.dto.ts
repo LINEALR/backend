@@ -8,7 +8,7 @@ export class CreateAreasSistemasDto {
         @IsString()
         descripcion_ceco: string;
 
-        @IsInt()
+        @IsString()
         @IsNotEmpty()
-        area_sistemas: number;
+        area_sistemas: string;
 }

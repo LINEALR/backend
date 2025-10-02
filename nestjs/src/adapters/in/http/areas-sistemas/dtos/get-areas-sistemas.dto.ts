@@ -12,9 +12,8 @@ export class GetAreasSistemasDto {
     descripcion_ceco?: string;
 
     @IsOptional()
-    @Type(() => Number)
-    @IsInt()
-    area_sistemas?: number;
+    @IsString()
+    area_sistemas?: string;
 
     @IsOptional()
     @Type(() => Number)

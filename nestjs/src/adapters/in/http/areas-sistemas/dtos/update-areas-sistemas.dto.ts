@@ -10,8 +10,6 @@ export class UpdateAreasSistemasDto {
     @IsString()
     descripcion_ceco?: string;
 
-
-    @IsOptional()
-    @IsInt()
-    area_sistemas?: number;
+    @IsString()
+    area_sistemas?: string;
 }

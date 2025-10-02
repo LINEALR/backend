@@ -18,7 +18,10 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "benchmark": "autocannon -c 10 -d 10 http://localhost:3000/colaboradores"
+    "benchmark": "autocannon -c 10 -d 10 http://localhost:3001/",
+    "prisma:pull": "prisma db pull --schema=src/infraestructure/prisma/postgresql/schema.postgresql.prisma",
+    "prisma:generate": "prisma generate --schema=src/infraestructure/prisma/postgresql/schema.postgresql.prisma",
+    "prisma:update": "npm run prisma:pull && npm run prisma:generate"
   },
   "dependencies": {
     "@nestjs/cache-manager": "^3.0.1",
@@ -26,7 +29,7 @@
     "@nestjs/config": "^4.0.2",
     "@nestjs/core": "^11.1.6",
     "@nestjs/platform-express": "^11.1.6",
-    "@prisma/client": "^6.13.0",
+    "@prisma/client": "^6.16.3",
     "@trpc/server": "^11.5.1",
     "cache-manager": "^7.1.1",
     "class-transformer": "^0.5.1",

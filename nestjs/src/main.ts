@@ -1,8 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { Module } from '@nestjs/common';
 import { AppModule } from './app.module';
-import * as express from 'express';
-import { DomainExeptionFilter } from './infraestructure/prisma/mysql/filters/domain-exeption.filter';
+import * as express from 'express';;
 import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {

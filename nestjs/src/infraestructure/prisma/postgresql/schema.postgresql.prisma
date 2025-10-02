@@ -1,6 +1,5 @@
 generator client {
   provider = "prisma-client-js"
-   output   = "../src/infraestructure/prisma/postgresql"
 }
 
 datasource db {
@@ -35,7 +34,7 @@ model t_areas_sistemas {
   id_area          Int               @id(map: "T_areas_sistemas_pkey") @default(autoincrement())
   ceco_sap         String            @db.VarChar(255)
   descripcion_ceco String            @db.VarChar(255)
-  area_sistemas    Int
+  area_sistemas    String            @db.VarChar(255)
   t_accesorios     t_accesorios[]
   t_colaboradores  t_colaboradores[]
   t_consumibles    t_consumibles[]
@@ -96,7 +95,7 @@ model t_dispositivos {
   modelo               String             @db.VarChar(255)
   num_serie            String             @db.VarChar(255)
   id_visual            String             @db.VarChar(255)
-  num_sap              Int
+  num_sap              Int?
   status               String             @db.VarChar(255)
   extras               String             @db.VarChar(255)
   id_area              Int
@@ -118,7 +117,7 @@ model t_factura {
   razon_social       String           @db.VarChar(255)
   folio_factura      String           @db.VarChar(255)
   fact_so            String           @db.VarChar(255)
-  fecha_factura      DateTime         @db.Date
+  fecha_factura      DateTime?        @db.Date
   moneda             String           @db.VarChar(255)
   unit_s_iva         Float
   t_accesorios       t_accesorios[]
