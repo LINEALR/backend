@@ -6,6 +6,7 @@ export class CreateAreasSistemasDto {
         ceco_sap: string;
 
         @IsString()
+        @IsNotEmpty()
         descripcion_ceco: string;
 
         @IsString()

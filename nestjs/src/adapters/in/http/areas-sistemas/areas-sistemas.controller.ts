@@ -51,6 +51,7 @@ export class AreasSistemasController {
     @CacheKey('create-areas-sistemas')
     @CacheTTL(5)
     async create(@Body() dto: CreateAreasSistemasDto) {
+        console.log("Body recibido:", Body);
         return this.createAreaSistemasService.execute(dto);
     }
 
