@@ -29,9 +29,43 @@ export class PrismaDispositivosRepository implements DispositivosRepository {
             where,
             skip,
             take,
+            include: {
+                t_areas_sistemas: {
+                    select: {
+                        descripcion_ceco: true
+                    }
+                },
+                t_colaboradores: {
+                    select: {
+                        num_control: true
+                    }
+                },
+                t_propietario: {
+                    select: {
+                        nombre: true
+                    }
+                },
+                t_ubicacion_fisica: {
+                    select: {
+                        descripcion: true
+                    }
+                },
+                t_factura: {
+                    select: {
+                        folio_factura: true
+                    }
+                }
+            }
         })
         return {
-            dispositivos: dispositivos.map(DispositivosMapper.toDomain),
+            dispositivos: dispositivos.map(d => ({
+                ...DispositivosMapper.toDomain(d),
+                descripcion_ceco: d.t_areas_sistemas.descripcion_ceco,
+                num_control: d.t_colaboradores.num_control,
+                nombre: d.t_propietario.nombre,
+                descripcion: d.t_ubicacion_fisica.descripcion,
+                folio_factura: d.t_factura.folio_factura
+            })),
             total,
             totalPages: Math.ceil(total / pageSize),
             currentPage: page

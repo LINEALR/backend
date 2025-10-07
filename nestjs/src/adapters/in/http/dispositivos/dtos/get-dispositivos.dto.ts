@@ -54,12 +54,12 @@ export class GetDispositivosDto {
     @IsOptional()
     @Type(() => Number) 
     @IsInt()
-    codigo_propietario: number;
+    id_propietario: number;
 
     @IsOptional()
     @Type(() => Number) 
     @IsInt()
-    codigo_ubicacion: number;
+    id_ubicacion: number;
 
     @IsOptional()
     @Type(() => Number) 
