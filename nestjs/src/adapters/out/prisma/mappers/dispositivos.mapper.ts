@@ -32,32 +32,27 @@ export class DispositivosMapper {
             ...(entity.id_visual !== undefined && { id_visual: entity.id_visual }),
             ...(entity.num_sap !== undefined && { num_sap: entity.num_sap }) ?? 0,
             ...(entity.status !== undefined && { status: entity.status }),
-            ...(entity.extras !== undefined && { extras: entity.extras }),
-            ...(entity.id_area !== undefined && { id_area: entity.id_area }) ?? 0,
-            ...(entity.num_control !== undefined && { num_control: entity.num_control }) ?? 0,
-            ...(entity.codigo_propietario !== undefined && { codigo_propietario: entity.codigo_propietario }) ?? 0,
-            ...(entity.codigo_ubicacion !== undefined && { codigo_ubicacion: entity.codigo_ubicacion }) ?? 0,
-            ...(entity.id_factura !== undefined && { id_factura: entity.id_factura }) ?? 0,
+            ...(entity.extras !== undefined && { extras: entity.extras })
+        }
     }
-}
 
     static toDomain(raw: any): Dispositivos {
-    return new Dispositivos({
-        id_dispositivos: raw.id_dispositivos,
-        dispositivo: raw.dispositivo,
-        descripcion_sistemas: raw.descripcion_sistemas,
-        marca: raw.marca,
-        modelo: raw.modelo,
-        num_serie: raw.num_serie,
-        id_visual: raw.id_visual,
-        num_sap: raw.num_sap,
-        status: raw.status,
-        extras: raw.extras,
-        id_area: raw.id_area,
-        num_control: raw.num_control,
-        codigo_propietario: raw.codigo_propietario,
-        codigo_ubicacion: raw.codigo_ubicacion,
-        id_factura: raw.id_factura,
-    });
-}
+        return new Dispositivos({
+            id_dispositivos: raw.id_dispositivos,
+            dispositivo: raw.dispositivo,
+            descripcion_sistemas: raw.descripcion_sistemas,
+            marca: raw.marca,
+            modelo: raw.modelo,
+            num_serie: raw.num_serie,
+            id_visual: raw.id_visual,
+            num_sap: raw.num_sap,
+            status: raw.status,
+            extras: raw.extras,
+            id_area: raw.id_area,
+            num_control: raw.num_control,
+            codigo_propietario: raw.codigo_propietario,
+            codigo_ubicacion: raw.codigo_ubicacion,
+            id_factura: raw.id_factura,
+        });
+    }
 }

@@ -1,4 +1,4 @@
-import { IsInt, IsNotEmpty, IsString } from "class-validator";
+import { IsInt, IsNotEmpty, IsString, IsOptional } from "class-validator";
 
 export class CreateDispositivosDto {
     @IsString()
@@ -31,18 +31,58 @@ export class CreateDispositivosDto {
     @IsString()
     extras: string;
 
-    @IsInt()
-    id_area: number;
+    @IsOptional()
+    @IsString()
+    descripcion_ceco: string;
 
+    @IsOptional()
     @IsInt()
     num_control: number;
 
-    @IsInt()
-    codigo_propietario: number;
+    @IsOptional()
+    @IsString()
+    nombre: string;
 
-    @IsInt()
-    codigo_ubicacion: number;
+    @IsOptional()
+    @IsString()
+    descripcion: string;
 
-    @IsInt()
-    id_factura: number;
+    @IsOptional()
+    @IsString()
+    folio_factura: string;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

@@ -3,6 +3,7 @@ import type { DispositivosRepository } from "src/domain/dispositivo/dispositivos
 import { Dispositivos } from "src/domain/dispositivo/dispositivos.entity";
 import { Injectable } from "@nestjs/common";
 import { DispositivosMapper } from "./mappers/dispositivos.mapper";
+import { distinct } from "rxjs";
 
 @Injectable()
 export class PrismaDispositivosRepository implements DispositivosRepository {
@@ -30,31 +31,11 @@ export class PrismaDispositivosRepository implements DispositivosRepository {
             skip,
             take,
             include: {
-                t_areas_sistemas: {
-                    select: {
-                        descripcion_ceco: true
-                    }
-                },
-                t_colaboradores: {
-                    select: {
-                        num_control: true
-                    }
-                },
-                t_propietario: {
-                    select: {
-                        nombre: true
-                    }
-                },
-                t_ubicacion_fisica: {
-                    select: {
-                        descripcion: true
-                    }
-                },
-                t_factura: {
-                    select: {
-                        folio_factura: true
-                    }
-                }
+                t_areas_sistemas: { select: { descripcion_ceco: true } },
+                t_colaboradores: { select: { num_control: true } },
+                t_propietario: { select: { nombre: true } },
+                t_ubicacion_fisica: { select: { descripcion: true } },
+                t_factura: { select: { folio_factura: true } }
             }
         })
         return {
@@ -70,18 +51,46 @@ export class PrismaDispositivosRepository implements DispositivosRepository {
             totalPages: Math.ceil(total / pageSize),
             currentPage: page
         }
+
+        // return {
+        //     dispositivos: dispositivos.map(d => ({
+        //         ...DispositivosMapper.toDomain(d),
+        //         descripcion_ceco: d.id_area === 0 ? "Desconocido" : d.t_areas_sistemas?.descripcion_ceco,
+        //         nombre_usuario: d.id_usuario === 0 ? "Sin usuario asignado" : d.t_usuarios?.nombre,
+        //         folio_factura: d.id_factura === 0 ? "Sin factura" : d.t_facturas?.folio_factura,
+        //         nombre_propietario: d.id_propietario === 0 ? "Sin propietario" : d.t_propietarios?.nombre
+        //     }))
+        // };
     }
 
     async create(dispositivo: Dispositivos): Promise<Dispositivos> {
-        const created = await this.prisma.t_dispositivos.create({ data: DispositivosMapper.toPrisma(dispositivo) })
+        const dispositivoUnique = {
+            ...dispositivo,
+            id_area: dispositivo.id_area ?? 0,
+            num_control: dispositivo.num_control ?? 0,
+            codigo_propietario: dispositivo.codigo_propietario ?? 0,
+            codigo_ubicacion: dispositivo.codigo_ubicacion ?? 0,
+            id_factura: dispositivo.id_factura ?? 0
+        }
+        const created = await this.prisma.t_dispositivos.create({ data: DispositivosMapper.toPrisma(dispositivoUnique) })
         return DispositivosMapper.toDomain(created)
     }
 
     async upadte(id_dispositivo: number, dispositivo: Partial<Dispositivos>): Promise<Dispositivos> {
+        const dataToUpdate = {
+            ...DispositivosMapper.partialToPrisma(dispositivo),
+            id_area: dispositivo.id_area ?? 0,
+            num_control: dispositivo.num_control ?? 0,
+            codigo_propietario: dispositivo.codigo_propietario ?? 0,
+            codigo_ubicacion: dispositivo.codigo_ubicacion ?? 0,
+            id_factura: dispositivo.id_factura ?? 0
+        };
+
         const updated = await this.prisma.t_dispositivos.update({
             where: { id_dispositivos: id_dispositivo },
-            data: DispositivosMapper.partialToPrisma(dispositivo),
-        })
+            data: dataToUpdate,
+        });
+        
         return DispositivosMapper.toDomain(updated)
     }
 

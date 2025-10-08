@@ -1,7 +1,7 @@
 import { IsInt, IsOptional, IsString } from "class-validator";
 
 export class UpdateDispositivosDto {
-    
+
     @IsOptional()
     @IsString()
     dipsositivo: string;
@@ -39,22 +39,22 @@ export class UpdateDispositivosDto {
     extras: string;
 
     @IsOptional()
-    @IsInt()
-    id_area: number;
+    @IsString()
+    descripcion_ceco: string;
 
     @IsOptional()
     @IsInt()
     num_control: number;
 
     @IsOptional()
-    @IsInt()
-    codigo_propietario: number;
+    @IsString()
+    nombre: string;
 
     @IsOptional()
-    @IsInt()
-    codigo_ubicacion: number;
+    @IsString()
+    descripcion: string;
 
     @IsOptional()
-    @IsInt()
-    id_factura: number;
+    @IsString()
+    folio_factura: string;
 }

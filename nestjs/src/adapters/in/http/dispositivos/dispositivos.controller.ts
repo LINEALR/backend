@@ -16,7 +16,6 @@ import { GET_DISPOSITIVOS_PORT } from "src/ports/in/dipositivos/get-dispositivos
 import { CREATE_DISPOSITIVOS_PORT } from "src/ports/in/dipositivos/create-dispositivos.port";
 import { UPDATE_DISPOSITIVOS_PORT } from "src/ports/in/dipositivos/update-dispositivos.port";
 import { DELETE_DISPOSITIVOS_PORT } from "src/ports/in/dipositivos/delete-dipositivos.port";
-import { UpdateColaboradoresDto } from "../colaboradores/dtos/update-colaboradores.dto";
 
 @Controller('dispositivos')
 export class DispositivosController {
@@ -60,7 +59,7 @@ export class DispositivosController {
     @CacheTTL(5)
     async update(
         @Param('id_dipositivos') id_dispoitivos: number,
-        @Body() dto: UpdateColaboradoresDto
+        @Body() dto: UpdateDispositivosDto
     ){
         return this.updateDispositivosService.execute(Number(id_dispoitivos), dto)
     }

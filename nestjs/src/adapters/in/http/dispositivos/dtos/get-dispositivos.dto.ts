@@ -40,11 +40,10 @@ export class GetDispositivosDto {
     @IsOptional()
     @IsString()
     extras: string;
-
+    
     @IsOptional()
-    @Type(() => Number) 
-    @IsInt()
-    id_area: number;
+    @IsString()
+    descripcion_ceco: string;
 
     @IsOptional()
     @Type(() => Number) 
@@ -52,20 +51,17 @@ export class GetDispositivosDto {
     num_control: number;
 
     @IsOptional()
-    @Type(() => Number) 
-    @IsInt()
-    id_propietario: number;
-
-    @IsOptional()
-    @Type(() => Number) 
-    @IsInt()
-    id_ubicacion: number;
-
-    @IsOptional()
-    @Type(() => Number) 
-    @IsInt()
-    id_factura: number;
+    @IsString()
+    nombre: string;
     
+    @IsOptional()
+    @IsString()
+    descripcion: string;
+    
+    @IsOptional()
+    @IsString()
+    folio_factura: string;
+
     @IsOptional()
     @Type(() => Number)
     @IsInt()
