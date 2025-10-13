@@ -1,30 +1,42 @@
 [
     {
-        "id": 1,
-        "numero_serie": "PF3AHK1Q"
-    },
-    {
-        "id": 2,
-        "numero_serie": "2501130000068"
-    },
-    {
-        "id": 3,
-        "numero_serie": "PF5EA0HY"
-    },
-    {
-        "id": 4,
-        "numero_serie": "1R1Y1Q3"
-    },
-    {
         "id": 5,
-        "numero_serie": "2501130000149"
+        "numero_serie": "2AA186X"
     },
     {
         "id": 6,
-        "numero_serie": "8FDQ754"
+        "numero_serie": "2AA186W"
     },
     {
         "id": 7,
-        "numero_serie": "5CG1522157D"
+        "numero_serie": "2AA186T"
+    },
+    {
+        "id": 8,
+        "numero_serie": "2AA18E5"
+    },
+    {
+        "id": 9,
+        "numero_serie": "2AA1JER"
+    },
+    {
+        "id": 10,
+        "numero_serie": "2AA186J"
+    },
+    {
+        "id": 11,
+        "numero_serie": "C0624430172QCHXDY"
+    },
+    {
+        "id": 12,
+        "numero_serie": "C0625020DEZQCHXDG"
+    },
+    {
+        "id": 13,
+        "numero_serie": "8SSA10R16920L1CZ"
+    },
+    {
+        "id": 14,
+        "numero_serie": "C040034GBJ9DJ96DS"
     }
 ]

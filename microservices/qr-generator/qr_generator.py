@@ -7,8 +7,8 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 json_path = os.path.join(BASE_DIR, "datos.json")
-gers_path = os.path.join(BASE_DIR, "logos/gers.png")               # GERS
-#gers_path = os.path.join(BASE_DIR, "logos/logo_qdl_SAdeCV.png")     # QDL
+#gers_path = os.path.join(BASE_DIR, "logos/gers.png")               # GERS
+gers_path = os.path.join(BASE_DIR, "logos/logo_qdl_SAdeCV.png")     # QDL
 ti_path = os.path.join(BASE_DIR, "logos/logo sistemas.png")
 output_dir = os.path.join(BASE_DIR, "etiquetas")
 
@@ -91,11 +91,11 @@ def generar_etiqueta_reorganizada(numero_serie: str, contador: int, logo1_path=g
     try:
         if os.path.exists(logo1_path):
             logo1 = Image.open(logo1_path).convert("RGBA")
-            logo1 = logo1.resize((300, 75), Image.Resampling.LANCZOS) # GERS
-            #logo1 = logo1.resize((240, 100), Image.Resampling.LANCZOS) # QDL
+            #logo1 = logo1.resize((300, 75), Image.Resampling.LANCZOS) # GERS
+            logo1 = logo1.resize((240, 100), Image.Resampling.LANCZOS) # QDL
             x_logo1 = (etiqueta_width - logo1.width)//2
-            y_logo1 = 35  # GERS
-            #y_logo1 = 20  # QDL
+            #y_logo1 = 35  # GERS
+            y_logo1 = 20  # QDL
             etiqueta.paste(logo1, (x_logo1, y_logo1), mask=logo1.split()[3])
 
     except Exception as e:
@@ -159,8 +159,8 @@ def generar_etiqueta_reorganizada(numero_serie: str, contador: int, logo1_path=g
         gap_length=5
     )
     # --- Guardar archivo con contador ---
-    nombre_archivo = f"GERS_P{contador:03d}_{numero_serie_str}.png"
-    #nombre_archivo = f"QDL_P{contador:03d}_{numero_serie_str}.png"
+    #nombre_archivo = f"GERS_P{contador:03d}_{numero_serie_str}.png"
+    nombre_archivo = f"QDL_Cargador_P{contador:03d}_{numero_serie_str}.png"
     ruta_completa = os.path.join(output_dir, nombre_archivo)
     etiqueta.save(ruta_completa, dpi=(300,300))
     print(f"✅ Generada: {nombre_archivo} | ID: {id_custom} | Serie: {numero_serie_str}")

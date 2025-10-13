@@ -10,13 +10,13 @@ pdf_path = os.path.join(BASE_DIR, "etiquetas.pdf")
 
 def generar_pdf():
     #Pagina horizontal para más espacio
-    page_width, page_height = A4 #landscape(A4) para que sea horizontal
+    page_width, page_height = landscape(A4) #landscape(A4) para que sea horizontal
 
     #Crear PDF
     c = canvas.Canvas(pdf_path, pagesize=(page_width, page_height))
 
     #Configuraión de cuadrícula
-    etiquetas_por_fila = 5
+    etiquetas_por_fila = 7
     margen_x =   0       #5 * mm
     margen_y =   0       #5 * mm
     espacio_x =  0       #5 * mm
