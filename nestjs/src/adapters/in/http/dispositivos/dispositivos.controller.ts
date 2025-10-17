@@ -6,16 +6,14 @@ import { Dispositivos } from "src/domain/dispositivo/dispositivos.entity";
 import { GetDispositivosDto } from "./dtos/get-dispositivos.dto";
 import { CreateDispositivosDto } from "./dtos/create-dispositivos.dto";
 import { UpdateDispositivosDto } from "./dtos/update-dispositivos.dto";
+import { AsignarDispositivoDto } from "./dtos/asignar-dispostivo.dto";
 
-import type { GetDispositivos } from "src/ports/in/dipositivos/get-dispositivos.port";
-import type { CreateDispositivos } from "src/ports/in/dipositivos/create-dispositivos.port";
-import type { UpdateDispositivos } from "src/ports/in/dipositivos/update-dispositivos.port";
-import type { DeleteDispositivos } from "src/ports/in/dipositivos/delete-dipositivos.port";
-
-import { GET_DISPOSITIVOS_PORT } from "src/ports/in/dipositivos/get-dispositivos.port";
-import { CREATE_DISPOSITIVOS_PORT } from "src/ports/in/dipositivos/create-dispositivos.port";
-import { UPDATE_DISPOSITIVOS_PORT } from "src/ports/in/dipositivos/update-dispositivos.port";
-import { DELETE_DISPOSITIVOS_PORT } from "src/ports/in/dipositivos/delete-dipositivos.port";
+import { type GetDispositivos, GET_DISPOSITIVOS_PORT } from "src/ports/in/dipositivos/get-dispositivos.port";
+import { type CreateDispositivos, CREATE_DISPOSITIVOS_PORT } from "src/ports/in/dipositivos/create-dispositivos.port";
+import { type UpdateDispositivos, UPDATE_DISPOSITIVOS_PORT } from "src/ports/in/dipositivos/update-dispositivos.port";
+import { type DeleteDispositivos, DELETE_DISPOSITIVOS_PORT } from "src/ports/in/dipositivos/delete-dipositivos.port";
+import { type AsignarDispositivo, ASIGNAR_DISPOSITIVO_PORT } from "src/ports/in/dipositivos/asignar-dispositivo.port";
+import { AgregarAsignacionDto } from "./dtos/agregar-asignacion.dto";
 
 @Controller('dispositivos')
 export class DispositivosController {
@@ -30,8 +28,11 @@ export class DispositivosController {
         private readonly updateDispositivosService: UpdateDispositivos,
 
         @Inject(DELETE_DISPOSITIVOS_PORT)
-        private readonly deleteDispositivosService: DeleteDispositivos
-    ) {}
+        private readonly deleteDispositivosService: DeleteDispositivos,
+
+        @Inject(ASIGNAR_DISPOSITIVO_PORT)
+        private readonly asignarDispositivosService: AsignarDispositivo
+    ) { }
 
     @Get('buscar')
     @UseInterceptors(CacheInterceptor)
@@ -41,7 +42,7 @@ export class DispositivosController {
         @Query() dto: GetDispositivosDto,
         @Query('page') page: number = 1,
         @Query('pageSize') pageSize: number = 10
-    ){
+    ) {
         return this.getDispositivosService.execute(dto, page, pageSize);
     }
 
@@ -60,7 +61,7 @@ export class DispositivosController {
     async update(
         @Param('id_dipositivos') id_dispoitivos: number,
         @Body() dto: UpdateDispositivosDto
-    ){
+    ) {
         return this.updateDispositivosService.execute(Number(id_dispoitivos), dto)
     }
 
@@ -68,8 +69,30 @@ export class DispositivosController {
     @UseInterceptors(CacheInterceptor)
     @CacheKey('delete-dispositivos')
     @CacheTTL(5)
-    async delete(@Param('id_dispositivos') id_dispositivo: number): Promise<{ message: string}> {
-        await this.deleteDispositivosService.execute(Number(id_dispositivo));
+    async delete(@Param('id_dispositivos') id_dispositivos: number): Promise<{ message: string }> {
+        await this.deleteDispositivosService.execute(Number(id_dispositivos));
         return { message: "Dispositivo eliminado con éxito" };
-    }    
+    }
+
+    @Put('asignar/:id_dispositivos')
+    @UseInterceptors(CacheInterceptor)
+    @CacheKey('asignar-dispositivos')
+    @CacheTTL(5)
+    async asignar(
+        @Param('id_dispositivos') id_dispositivos: number,
+        @Body() dto: { num_control: number }
+    ) {
+        return this.asignarDispositivosService.execute({
+            id_dispositivos,
+            num_control: dto.num_control
+        });
+    } 
+
+    @Post('asignado')
+    @UseInterceptors(CacheInterceptor)
+    @CacheKey('create-dispositivos')
+    @CacheTTL(5)
+    async agregar_asignacion(@Body() dto: AgregarAsignacionDto) {
+        return this.createDispositivosService.execute(dto)
+    }
 }

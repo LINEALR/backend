@@ -8,10 +8,22 @@ import { DISPOSITIVOS_REPOSITORY_PORT } from "src/ports/out/dispositivos-reposit
 export class CreateDispositivosService implements CreateDispositivos {
     constructor(@Inject(DISPOSITIVOS_REPOSITORY_PORT) private readonly repo: DispositivosRepositoryPort) {}
 
-    async execute(data: Partial<Dispositivos>): Promise<Dispositivos> {
+    async execute(data: Dispositivos): Promise<Dispositivos> {
         if (!data.dispositivo) {
-            throw new Error(`El nobre del dispositivo es obligatorio`);
+            throw new Error(`El nombre del dispositivo es obligatorio`);
         }
-        return await this.repo.create(data);
+
+        const dispositivo: Dispositivos = {
+            ...data,
+            status: data.status ?? 'NO ASIGNADO',
+            extras: data.extras ?? "N/A",
+            id_area: data.id_area ?? 1,
+            num_control: data.codigo_propietario ?? 1,
+            codigo_propietario: data.codigo_propietario ?? 1,
+            codigo_ubicacion: data.codigo_ubicacion ?? 1,
+            id_factura: data.id_factura ?? 1
+        }
+
+        return await this.repo.create(dispositivo);
     }
 }

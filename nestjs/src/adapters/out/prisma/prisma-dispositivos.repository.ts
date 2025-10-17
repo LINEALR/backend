@@ -3,7 +3,6 @@ import type { DispositivosRepository } from "src/domain/dispositivo/dispositivos
 import { Dispositivos } from "src/domain/dispositivo/dispositivos.entity";
 import { Injectable } from "@nestjs/common";
 import { DispositivosMapper } from "./mappers/dispositivos.mapper";
-import { distinct } from "rxjs";
 
 @Injectable()
 export class PrismaDispositivosRepository implements DispositivosRepository {
@@ -64,31 +63,14 @@ export class PrismaDispositivosRepository implements DispositivosRepository {
     }
 
     async create(dispositivo: Dispositivos): Promise<Dispositivos> {
-        const dispositivoUnique = {
-            ...dispositivo,
-            id_area: dispositivo.id_area ?? 0,
-            num_control: dispositivo.num_control ?? 0,
-            codigo_propietario: dispositivo.codigo_propietario ?? 0,
-            codigo_ubicacion: dispositivo.codigo_ubicacion ?? 0,
-            id_factura: dispositivo.id_factura ?? 0
-        }
-        const created = await this.prisma.t_dispositivos.create({ data: DispositivosMapper.toPrisma(dispositivoUnique) })
+        const created = await this.prisma.t_dispositivos.create({ data: DispositivosMapper.toPrisma(dispositivo) })
         return DispositivosMapper.toDomain(created)
     }
 
     async upadte(id_dispositivo: number, dispositivo: Partial<Dispositivos>): Promise<Dispositivos> {
-        const dataToUpdate = {
-            ...DispositivosMapper.partialToPrisma(dispositivo),
-            id_area: dispositivo.id_area ?? 0,
-            num_control: dispositivo.num_control ?? 0,
-            codigo_propietario: dispositivo.codigo_propietario ?? 0,
-            codigo_ubicacion: dispositivo.codigo_ubicacion ?? 0,
-            id_factura: dispositivo.id_factura ?? 0
-        };
-
         const updated = await this.prisma.t_dispositivos.update({
             where: { id_dispositivos: id_dispositivo },
-            data: dataToUpdate,
+            data: DispositivosMapper.partialToPrisma(dispositivo),
         });
         
         return DispositivosMapper.toDomain(updated)

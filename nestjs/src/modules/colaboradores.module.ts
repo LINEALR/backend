@@ -27,6 +27,7 @@ import { DELETE_COLABORADORES_PORT } from 'src/ports/in/colaboradores/delete-col
     { provide: UPDATE_COLABORADORES_PORT, useClass: UpdateColaboradoresService },
     { provide: DELETE_COLABORADORES_PORT, useClass: DeleteColaboradoresService }
   ],
+  exports: [COLABORADORES_REPOSITORY_PORT]
 })
 
 export class ColaboradoresModule {}

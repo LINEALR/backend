@@ -23,16 +23,21 @@ export class DispositivosMapper {
 
     static partialToPrisma(entity: Partial<Dispositivos>) {
         return {
-            ...(entity.id_dispositivos !== undefined && { id_dispositivo: entity.id_dispositivos }) ?? 0,
+            ...(entity.id_dispositivos !== undefined && { id_dispositivo: entity.id_dispositivos }) ?? 1,
             ...(entity.dispositivo !== undefined && { dispositivo: entity.dispositivo }),
             ...(entity.descripcion_sistemas !== undefined && { descripcion_sistemas: entity.descripcion_sistemas }),
             ...(entity.marca !== undefined && { marca: entity.marca }),
             ...(entity.modelo !== undefined && { modelo: entity.modelo }),
             ...(entity.num_serie !== undefined && { num_serie: entity.num_serie }),
             ...(entity.id_visual !== undefined && { id_visual: entity.id_visual }),
-            ...(entity.num_sap !== undefined && { num_sap: entity.num_sap }) ?? 0,
+            ...(entity.num_sap !== undefined && { num_sap: entity.num_sap }) ?? 1,
             ...(entity.status !== undefined && { status: entity.status }),
-            ...(entity.extras !== undefined && { extras: entity.extras })
+            ...(entity.extras !== undefined && { extras: entity.extras }) ?? 1,
+            ...(entity.id_area !== undefined && { id_area: entity.id_area }) ?? 1,
+            ...(entity.num_control !== undefined && { num_control: entity.num_control }),
+            ...(entity.codigo_propietario !== undefined && { codigo_propietario: entity.codigo_propietario }) ?? 1,
+            ...(entity.codigo_ubicacion !== undefined && { codigo_ubicacion: entity.codigo_ubicacion }) ?? 1,
+            ...(entity.id_factura !== undefined && { id_factura: entity.id_factura }) ?? 1,
         }
     }
 

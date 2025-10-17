@@ -64,7 +64,7 @@ def generar_etiqueta_reorganizada(numero_serie: str, contador: int, logo1_path=g
     # --- Datos para QR ---
     id_custom = contador
     numero_serie_str = f"{numero_serie}"
-    data = json.dumps({"id": id_custom, "numero_serie": numero_serie_str})
+    data = numero_serie_str
     try:
         font = ImageFont.truetype("arial.ttf", 72)
     except:
@@ -160,7 +160,7 @@ def generar_etiqueta_reorganizada(numero_serie: str, contador: int, logo1_path=g
     )
     # --- Guardar archivo con contador ---
     #nombre_archivo = f"GERS_P{contador:03d}_{numero_serie_str}.png"
-    nombre_archivo = f"QDL_Cargador_P{contador:03d}_{numero_serie_str}.png"
+    nombre_archivo = f"QDL_P{contador:03d}_{numero_serie_str}.png"
     ruta_completa = os.path.join(output_dir, nombre_archivo)
     etiqueta.save(ruta_completa, dpi=(300,300))
     print(f"✅ Generada: {nombre_archivo} | ID: {id_custom} | Serie: {numero_serie_str}")
