@@ -103,6 +103,7 @@ model t_dispositivos {
   codigo_propietario   Int
   codigo_ubicacion     Int
   id_factura           Int
+  num_cargador         String?            @db.VarChar(255)
   t_propietario        t_propietario      @relation(fields: [codigo_propietario], references: [id_propietario], onDelete: NoAction, onUpdate: NoAction, map: "t_dispositivos_codigo_propietario_foreign")
   t_ubicacion_fisica   t_ubicacion_fisica @relation(fields: [codigo_ubicacion], references: [id_ubicacion], onDelete: NoAction, onUpdate: NoAction, map: "t_dispositivos_codigo_ubicacion_foreign")
   t_areas_sistemas     t_areas_sistemas   @relation(fields: [id_area], references: [id_area], onDelete: NoAction, onUpdate: NoAction, map: "t_dispositivos_id_area_foreign")

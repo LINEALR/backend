@@ -1,4 +1,4 @@
-import { UsuarioRepository } from "src/domain/usuario/usuario.repository";
+import { UsuarioRepository } from "src/domain/entities/usuario/usuario.repository";
 
 export const USUARIO_REPOSITORY_PORT = Symbol('USUARIO_REPOSITOTY_PORT');
 

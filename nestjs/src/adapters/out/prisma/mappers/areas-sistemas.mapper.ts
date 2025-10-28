@@ -1,4 +1,4 @@
-import { AreasSistemas } from "src/domain/areas-sistemas/areas-sistemas.entity";
+import { AreasSistemas } from "src/domain/entities/areas-sistemas/areas-sistemas.entity";
 
 export class AreasSistemasMapper {
     static toPrisma(entity: AreasSistemas) {

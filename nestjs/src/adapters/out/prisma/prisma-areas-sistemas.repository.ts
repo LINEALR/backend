@@ -1,7 +1,7 @@
 import { PrismaService } from "src/infraestructure/prisma/postgresql/prisma.service";
 import { Injectable } from "@nestjs/common";
-import { AreasSistemas } from "src/domain/areas-sistemas/areas-sistemas.entity";
-import type { AreasSistemasRepository } from "src/domain/areas-sistemas/areas-sistemas.repository";
+import { AreasSistemas } from "src/domain/entities/areas-sistemas/areas-sistemas.entity";
+import type { AreasSistemasRepository } from "src/domain/entities/areas-sistemas/areas-sistemas.repository";
 import { AreasSistemasMapper } from "./mappers/areas-sistemas.mapper";
 
 @Injectable()

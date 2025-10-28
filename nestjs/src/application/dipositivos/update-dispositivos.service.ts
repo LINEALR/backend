@@ -1,5 +1,5 @@
 import { Inject, Injectable } from "@nestjs/common";
-import { Dispositivos } from "src/domain/dispositivo/dispositivos.entity";
+import { Dispositivos } from "src/domain/entities/dispositivo/dispositivos.entity";
 import { UpdateDispositivos } from "src/ports/in/dipositivos/update-dispositivos.port";
 import type { DispositivosRepositoryPort } from "src/ports/out/dispositivos-repository.port";
 import { DISPOSITIVOS_REPOSITORY_PORT } from "src/ports/out/dispositivos-repository.port";

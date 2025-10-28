@@ -1,4 +1,4 @@
-import { Dispositivos } from "src/domain/dispositivo/dispositivos.entity";
+import { Dispositivos } from "src/domain/entities/dispositivo/dispositivos.entity";
 
 export const UPDATE_DISPOSITIVOS_PORT = Symbol('UPDATE_DISPOSITIVOS_PORT');
 

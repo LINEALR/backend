@@ -1,6 +1,6 @@
 import { ExceptionFilter, Catch, ArgumentsHost, HttpStatus, } from "@nestjs/common";
 import { Response } from "express";
-import { ColabroradorNotNameExeption } from "src/domain/colaboradores/exeptions/colaborador-not-name.exeption";
+import { ColabroradorNotNameExeption } from "src/domain/entities/colaboradores/exeptions/colaborador-not-name.exeption";
 
 @Catch()
 export class DomainExeptionFilter implements ExceptionFilter {

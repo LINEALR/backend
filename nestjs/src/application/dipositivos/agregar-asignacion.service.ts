@@ -1,5 +1,5 @@
 import { Inject, Injectable } from "@nestjs/common";
-import { Dispositivos } from "src/domain/dispositivo/dispositivos.entity";
+import { Dispositivos } from "src/domain/entities/dispositivo/dispositivos.entity";
 import { type DispositivosRepositoryPort, DISPOSITIVOS_REPOSITORY_PORT } from "src/ports/out/dispositivos-repository.port";
 import { type ColaboradoresRepositoryPort, COLABORADORES_REPOSITORY_PORT } from "src/ports/out/colaborador-repository.port";
 import type { AgregarAsignacion } from "src/ports/in/dipositivos/agregar-asignacion.port";
@@ -8,7 +8,7 @@ import type { AgregarAsignacion } from "src/ports/in/dipositivos/agregar-asignac
 export class AgregarAsignacionService implements AgregarAsignacion {
     constructor(
         @Inject(DISPOSITIVOS_REPOSITORY_PORT) private readonly dispositivosRepo: DispositivosRepositoryPort,
-        @Inject(COLABORADORES_REPOSITORY_PORT) private readonly colaboradoresRepo: ColaboradoresRepositoryPort
+        @Inject(COLABORADORES_REPOSITORY_PORT) private readonly colaboradoresRepo: ColaboradoresRepositoryPort,
     ) { }
 
     async execute(data: Dispositivos): Promise<Dispositivos> {
@@ -23,7 +23,8 @@ export class AgregarAsignacionService implements AgregarAsignacion {
 
         const dispositivo: Dispositivos = {
             ...data,
-            status: data.status ?? 'NO ASIGNADO',
+            num_cargador: data.num_cargador ?? "N/A",
+            status: data.status ?? 'ASIGNADO',
             extras: data.extras ?? "N/A",
             id_area: colab.id_area,
             num_control: colab.id_colaboradores!,
@@ -33,5 +34,6 @@ export class AgregarAsignacionService implements AgregarAsignacion {
         }
 
         return await this.dispositivosRepo.create(dispositivo);
+
     }
 }

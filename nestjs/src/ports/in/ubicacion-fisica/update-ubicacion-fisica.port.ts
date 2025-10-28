@@ -1,4 +1,4 @@
-import { UbicacionFisica } from "src/domain/ubicacion-fisica/ubicacion-fisica.entity";
+import { UbicacionFisica } from "src/domain/entities/ubicacion-fisica/ubicacion-fisica.entity";
 
 export const UPDATE_UBICACION_FISICA_PORT = Symbol('UPDATE_UBICACION_FISICA_PORT');
 

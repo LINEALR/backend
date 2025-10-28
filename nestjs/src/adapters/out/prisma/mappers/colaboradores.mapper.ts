@@ -1,4 +1,4 @@
-import { Colaboradores } from "src/domain/colaboradores/colaboradores.entity";
+import { Colaboradores } from "src/domain/entities/colaboradores/colaboradores.entity";
 
 export class ColaboradoresMapper {
     static toPrisma(entity: Colaboradores) {

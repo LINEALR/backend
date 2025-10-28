@@ -14,7 +14,7 @@ export class AgregarAsignacionDto {
     
         @IsString()
         modelo: string;
-    
+
         @IsString()
         @IsNotEmpty()
         num_serie: string;

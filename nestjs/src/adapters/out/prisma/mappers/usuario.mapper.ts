@@ -1,4 +1,4 @@
-import { Usuario } from "src/domain/usuario/usuario.entity";
+import { Usuario } from "src/domain/entities/usuario/usuario.entity";
 
 export class UsuarioMapper {
     static toPrisma(entity: Usuario) {

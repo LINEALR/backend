@@ -1,4 +1,4 @@
-import { Propietario } from "src/domain/propietario/propietario.entity";
+import { Propietario } from "src/domain/entities/propietario/propietario.entity";
 
 export const UPDATE_PROPIETARIO_PORT = Symbol('UPDATE_PROPIETARIO_PORT');
 

@@ -1,8 +1,8 @@
 import { Inject, Injectable } from "@nestjs/common";
-import { Colaboradores } from "src/domain/colaboradores/colaboradores.entity";
+import { Colaboradores } from "src/domain/entities/colaboradores/colaboradores.entity";
 import { CreateColaboradores } from "src/ports/in/colaboradores/create-colaboradores.port";
 import { COLABORADORES_REPOSITORY_PORT, type ColaboradoresRepositoryPort } from "src/ports/out/colaborador-repository.port";
-import { ColabroradorNotNameExeption } from "src/domain/colaboradores/exeptions/colaborador-not-name.exeption";
+import { ColabroradorNotNameExeption } from "src/domain/entities/colaboradores/exeptions/colaborador-not-name.exeption";
 
 @Injectable()
 export class CreateColaboradoresService implements CreateColaboradores {

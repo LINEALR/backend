@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Put, Delete, Body, Param, Inject, UseInterceptors, Query } from "@nestjs/common";
 import { CacheInterceptor, CacheKey, CacheTTL } from "@nestjs/cache-manager";
 
-import { Usuario } from "src/domain/usuario/usuario.entity";
+import { Usuario } from "src/domain/entities/usuario/usuario.entity";
 
 import { GetUsuarioDto } from "./dtos/get-usuario.dto";
 import { CreateUsuarioDto } from "./dtos/create-usuario.dto";

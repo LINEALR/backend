@@ -1,5 +1,5 @@
 import { Inject, Injectable } from "@nestjs/common";
-import { Colaboradores } from "src/domain/colaboradores/colaboradores.entity";
+import { Colaboradores } from "src/domain/entities/colaboradores/colaboradores.entity";
 import { UpdateColaboradores } from "src/ports/in/colaboradores/update-colaboradores.port";
 import { COLABORADORES_REPOSITORY_PORT, type ColaboradoresRepositoryPort } from "src/ports/out/colaborador-repository.port";
 

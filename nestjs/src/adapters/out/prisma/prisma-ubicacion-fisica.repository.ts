@@ -1,7 +1,7 @@
 import { PrismaService } from "src/infraestructure/prisma/postgresql/prisma.service";
 import { Injectable } from "@nestjs/common";
-import { UbicacionFisica } from "src/domain/ubicacion-fisica/ubicacion-fisica.entity";
-import type { UbicacionFisicaRepository } from "src/domain/ubicacion-fisica/ubicacion-fisica.repository";
+import { UbicacionFisica } from "src/domain/entities/ubicacion-fisica/ubicacion-fisica.entity";
+import type { UbicacionFisicaRepository } from "src/domain/entities/ubicacion-fisica/ubicacion-fisica.repository";
 import { UbicacionFisicaMapper } from "./mappers/ubicacion-fisica.mapper";
 
 @Injectable()

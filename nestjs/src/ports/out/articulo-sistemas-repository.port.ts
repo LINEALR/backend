@@ -1,4 +1,4 @@
-import { ArticuloSistemasRepository } from "src/domain/articulo-sistemas/articulo-sistemas.repository";
+import { ArticuloSistemasRepository } from "src/domain/entities/articulo-sistemas/articulo-sistemas.repository";
 
 export const ARTICULO_SISTEMAS_REPOSITORY_PORT = Symbol('ARTICULO_SISTEMAS_REPOSITORY_PORT');
 

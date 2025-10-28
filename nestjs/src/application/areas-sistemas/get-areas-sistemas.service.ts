@@ -1,5 +1,5 @@
 import { Inject, Injectable } from "@nestjs/common";
-import { AreasSistemas } from "src/domain/areas-sistemas/areas-sistemas.entity";
+import { AreasSistemas } from "src/domain/entities/areas-sistemas/areas-sistemas.entity";
 import { GetAreasSistemas } from "src/ports/in/areas-sistemas/get-areas-sistemas.port";
 import type { AreasSistemasRepositoryPort } from "src/ports/out/areas-sistemas-repository.port";
 import { AREAS_SISTEMAS_REPOSITORY_PORT } from "src/ports/out/areas-sistemas-repository.port";

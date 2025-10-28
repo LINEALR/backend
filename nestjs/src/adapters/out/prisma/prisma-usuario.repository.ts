@@ -1,6 +1,6 @@
 import { PrismaService } from "src/infraestructure/prisma/postgresql/prisma.service";
-import { Usuario } from "src/domain/usuario/usuario.entity";
-import type { UsuarioRepository } from "src/domain/usuario/usuario.repository";
+import { Usuario } from "src/domain/entities/usuario/usuario.entity";
+import type { UsuarioRepository } from "src/domain/entities/usuario/usuario.repository";
 import { Injectable } from "@nestjs/common";
 import { UsuarioMapper } from "./mappers/usuario.mapper";
 

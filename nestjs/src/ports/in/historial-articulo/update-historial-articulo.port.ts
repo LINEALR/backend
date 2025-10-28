@@ -1,4 +1,4 @@
-import { HistorialArticulo } from "src/domain/historial-articulo/historial-articulo.entity";
+import { HistorialArticulo } from "src/domain/entities/historial-articulo/historial-articulo.entity";
 
 export const UPDATE_HISTORIAL_ARTICULO_PORT = Symbol('UPDATE_HISTORIAL_ARTICULO_PORT');
 

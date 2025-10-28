@@ -1,6 +1,6 @@
 import { PrismaService } from "src/infraestructure/prisma/postgresql/prisma.service";
-import { ArticuloSistemas } from "src/domain/articulo-sistemas/articulo-sistemas.entity";
-import type { ArticuloSistemasRepository } from "src/domain/articulo-sistemas/articulo-sistemas.repository";
+import { ArticuloSistemas } from "src/domain/entities/articulo-sistemas/articulo-sistemas.entity";
+import type { ArticuloSistemasRepository } from "src/domain/entities/articulo-sistemas/articulo-sistemas.repository";
 import { Injectable } from "@nestjs/common";
 import { ArticuloSistemasMapper } from "./mappers/articulo-sistemas.mapper";
 

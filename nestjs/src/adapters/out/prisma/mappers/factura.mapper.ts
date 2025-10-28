@@ -1,4 +1,4 @@
-import { Factura } from "src/domain/factura/factura.entity";
+import { Factura } from "src/domain/entities/factura/factura.entity";
 
 export class FacturaMapper {
     static toPrisma(entity: Factura) {

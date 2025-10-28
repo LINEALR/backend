@@ -1,4 +1,4 @@
-import { ArticuloSistemas } from "src/domain/articulo-sistemas/articulo-sistemas.entity";
+import { ArticuloSistemas } from "src/domain/entities/articulo-sistemas/articulo-sistemas.entity";
 
 export const UPDATE_ARTICULO_SISTEMAS_PORT = Symbol('UPDATE_ARTICULO_SISTEMAS_PORT');
 

@@ -1,4 +1,4 @@
-import { AreasSistemas } from "src/domain/areas-sistemas/areas-sistemas.entity";
+import { AreasSistemas } from "src/domain/entities/areas-sistemas/areas-sistemas.entity";
 
 export const CREATE_AREAS_SISTEMAS_PORT = Symbol('CREATE_AREAS_SISTEMAS_PORT');
 

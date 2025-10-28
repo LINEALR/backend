@@ -1,4 +1,4 @@
-import { Propietario } from "src/domain/propietario/propietario.entity";
+import { Propietario } from "src/domain/entities/propietario/propietario.entity";
 
 export class PropietarioMapper {
     static toPrisma(entity: Propietario) {

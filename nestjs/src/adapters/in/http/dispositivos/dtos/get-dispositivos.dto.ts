@@ -25,6 +25,11 @@ export class GetDispositivosDto {
     num_serie: string;
 
     @IsOptional()
+    @Type(() => Number) 
+    @IsInt()
+    num_cargador: string;
+
+    @IsOptional()
     @IsString()
     id_visual: string;
 

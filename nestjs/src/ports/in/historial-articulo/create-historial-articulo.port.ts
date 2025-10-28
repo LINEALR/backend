@@ -1,5 +1,5 @@
 import { ParseUUIDPipe } from "@nestjs/common";
-import { HistorialArticulo } from "src/domain/historial-articulo/historial-articulo.entity";
+import { HistorialArticulo } from "src/domain/entities/historial-articulo/historial-articulo.entity";
 
 export const CREATE_HISTORIAL_ARTICULO_PORT = Symbol('CREATE_HISTORIAL_ARTICULO_PORT');
 

@@ -5,7 +5,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
 import { AreasSistemasModule } from './modules/areas-sistemas.module';
-import { ArticuloSistemas } from './domain/articulo-sistemas/articulo-sistemas.entity';
+import { ArticuloSistemas } from './domain/entities/articulo-sistemas/articulo-sistemas.entity';
 import { ColaboradoresModule } from './modules/colaboradores.module';
 import { DispositivosModule } from './modules/dispositivos.module';
 import { FacturaModule } from './modules/factura.module';

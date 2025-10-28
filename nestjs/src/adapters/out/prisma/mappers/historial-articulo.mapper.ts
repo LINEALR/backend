@@ -1,4 +1,4 @@
-import { HistorialArticulo } from "src/domain/historial-articulo/historial-articulo.entity";
+import { HistorialArticulo } from "src/domain/entities/historial-articulo/historial-articulo.entity";
 
 export class HistorialArticuloMapper {
     static toPrisma(entity: HistorialArticulo) {

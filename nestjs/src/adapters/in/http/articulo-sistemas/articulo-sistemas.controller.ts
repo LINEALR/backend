@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Put, Delete, Body, Param, Inject, UseInterceptors, Query } from "@nestjs/common";
 import { CacheInterceptor, CacheKey, CacheTTL } from "@nestjs/cache-manager";
 
-import { ArticuloSistemas } from "src/domain/articulo-sistemas/articulo-sistemas.entity";
+import { ArticuloSistemas } from "src/domain/entities/articulo-sistemas/articulo-sistemas.entity";
 
 import { GetArticuloSistemasDto } from "./dtos/get-articulo-sistemas.dto";
 import { CreateArticuloSistemasDto } from "./dtos/creare-articulo-sistemas.dto";

@@ -1,4 +1,4 @@
-import { Dispositivos } from "src/domain/dispositivo/dispositivos.entity";
+import { Dispositivos } from "src/domain/entities/dispositivo/dispositivos.entity";
 
 export class DispositivosMapper {
     static toPrisma(entity: Dispositivos) {
@@ -9,6 +9,7 @@ export class DispositivosMapper {
             marca: entity.marca,
             modelo: entity.modelo,
             num_serie: entity.num_serie,
+            num_cargador: entity.num_cargador,
             id_visual: entity.id_visual,
             num_sap: entity.num_sap,
             status: entity.status,
@@ -29,6 +30,7 @@ export class DispositivosMapper {
             ...(entity.marca !== undefined && { marca: entity.marca }),
             ...(entity.modelo !== undefined && { modelo: entity.modelo }),
             ...(entity.num_serie !== undefined && { num_serie: entity.num_serie }),
+            ...(entity.num_cargador !== undefined && { num_cargador: entity.num_cargador }),
             ...(entity.id_visual !== undefined && { id_visual: entity.id_visual }),
             ...(entity.num_sap !== undefined && { num_sap: entity.num_sap }) ?? 1,
             ...(entity.status !== undefined && { status: entity.status }),
@@ -49,6 +51,7 @@ export class DispositivosMapper {
             marca: raw.marca,
             modelo: raw.modelo,
             num_serie: raw.num_serie,
+            num_cargador: raw.num_cargador,
             id_visual: raw.id_visual,
             num_sap: raw.num_sap,
             status: raw.status,

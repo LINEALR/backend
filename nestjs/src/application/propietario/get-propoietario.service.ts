@@ -1,5 +1,5 @@
 import { Inject, Injectable } from "@nestjs/common";
-import { Propietario } from "src/domain/propietario/propietario.entity";
+import { Propietario } from "src/domain/entities/propietario/propietario.entity";
 import { GetPropietario } from "src/ports/in/propietario/get-propietario.port";
 import { PROPIETARO_REPOSITORY_PORT, type PropietarioRepositoryPort } from "src/ports/out/propietario-repository.port";
 

@@ -1,4 +1,4 @@
-import { Usuario } from "src/domain/usuario/usuario.entity";
+import { Usuario } from "src/domain/entities/usuario/usuario.entity";
 
 export const GET_USUARIO_PORT = Symbol('GET_USUARIO_PORT');
 

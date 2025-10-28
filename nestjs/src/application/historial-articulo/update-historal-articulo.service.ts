@@ -1,5 +1,5 @@
 import { Inject, Injectable } from "@nestjs/common";
-import { HistorialArticulo } from "src/domain/historial-articulo/historial-articulo.entity";
+import { HistorialArticulo } from "src/domain/entities/historial-articulo/historial-articulo.entity";
 import { UpdateHistorialArticulo } from "src/ports/in/historial-articulo/update-historial-articulo.port";
 import { HISTORIAL_ARTICULO_REPOSITORY_PORT, type HistorialArticuloRepositoryPort } from "src/ports/out/historial-articulo.port";
 

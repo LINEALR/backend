@@ -1,4 +1,4 @@
-import { Colaboradores } from "src/domain/colaboradores/colaboradores.entity";
+import { Colaboradores } from "src/domain/entities/colaboradores/colaboradores.entity";
 
 export const UPDATE_COLABORADORES_PORT = Symbol('UPDATE_COLABORADORES_PORT');
 

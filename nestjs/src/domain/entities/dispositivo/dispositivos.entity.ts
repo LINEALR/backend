@@ -5,6 +5,7 @@ export class Dispositivos {
         public marca: string;
         public modelo: string;
         public num_serie: string;
+        public num_cargador: string;
         public id_visual: string;
         public num_sap: number;
         public status: string;
@@ -21,6 +22,7 @@ export class Dispositivos {
         marca: string,
         modelo: string,
         num_serie: string,
+        num_cargador: string,
         id_visual: string,
         num_sap: number,
         status: string,

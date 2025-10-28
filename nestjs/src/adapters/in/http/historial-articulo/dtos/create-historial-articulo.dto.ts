@@ -3,29 +3,21 @@ import { IsInt, IsNotEmpty, IsString, IsDate } from "class-validator";
 export class CreateHistorialArticuloDto {
     @IsInt()
     @IsNotEmpty()
-    id_usuario: number;
+    id_colaborador: number;
 
-    @IsDate()
+    @IsInt()
     @IsNotEmpty()
-    fecha_modificacion: Date;
+    id_usuario: number;
 
     @IsInt()
     @IsNotEmpty()
     id_dispositivos: number;
 
-    @IsString()
-    @IsNotEmpty()
-    hostname: string;
-
-    @IsString()
-    @IsNotEmpty()
-    ceco_sap_ant: string;
-
     @IsInt()
     @IsNotEmpty()
-    num_conrol_ant: number;
-    
-    @IsInt()
+    id_movimiento: number;
+
+    @IsDate()
     @IsNotEmpty()
-    id_moimiento: number;
+    fecha_modificacion: Date;
 }

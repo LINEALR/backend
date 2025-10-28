@@ -1,19 +1,19 @@
 import { Controller, Get, Post, Put, Delete, Body, Param, Inject, UseInterceptors, Query } from "@nestjs/common";
 import { CacheInterceptor, CacheKey, CacheTTL } from "@nestjs/cache-manager";
 
-import { Dispositivos } from "src/domain/dispositivo/dispositivos.entity";
+import { Dispositivos } from "src/domain/entities/dispositivo/dispositivos.entity";
 
 import { GetDispositivosDto } from "./dtos/get-dispositivos.dto";
 import { CreateDispositivosDto } from "./dtos/create-dispositivos.dto";
 import { UpdateDispositivosDto } from "./dtos/update-dispositivos.dto";
-import { AsignarDispositivoDto } from "./dtos/asignar-dispostivo.dto";
+import { AgregarAsignacionDto } from "./dtos/agregar-asignacion.dto";
 
 import { type GetDispositivos, GET_DISPOSITIVOS_PORT } from "src/ports/in/dipositivos/get-dispositivos.port";
 import { type CreateDispositivos, CREATE_DISPOSITIVOS_PORT } from "src/ports/in/dipositivos/create-dispositivos.port";
 import { type UpdateDispositivos, UPDATE_DISPOSITIVOS_PORT } from "src/ports/in/dipositivos/update-dispositivos.port";
 import { type DeleteDispositivos, DELETE_DISPOSITIVOS_PORT } from "src/ports/in/dipositivos/delete-dipositivos.port";
 import { type AsignarDispositivo, ASIGNAR_DISPOSITIVO_PORT } from "src/ports/in/dipositivos/asignar-dispositivo.port";
-import { AgregarAsignacionDto } from "./dtos/agregar-asignacion.dto";
+import { type AgregarAsignacion, AGREGAR_CON_ASIGNACION_PORT } from "src/ports/in/dipositivos/agregar-asignacion.port";
 
 @Controller('dispositivos')
 export class DispositivosController {
@@ -31,7 +31,10 @@ export class DispositivosController {
         private readonly deleteDispositivosService: DeleteDispositivos,
 
         @Inject(ASIGNAR_DISPOSITIVO_PORT)
-        private readonly asignarDispositivosService: AsignarDispositivo
+        private readonly asignarDispositivosService: AsignarDispositivo,
+
+        @Inject(AGREGAR_CON_ASIGNACION_PORT)
+        private readonly agregarAsignacionService: AgregarAsignacion,
     ) { }
 
     @Get('buscar')
@@ -90,9 +93,9 @@ export class DispositivosController {
 
     @Post('asignado')
     @UseInterceptors(CacheInterceptor)
-    @CacheKey('create-dispositivos')
+    @CacheKey('create-dispositivo-asignado')
     @CacheTTL(5)
     async agregar_asignacion(@Body() dto: AgregarAsignacionDto) {
-        return this.createDispositivosService.execute(dto)
+        return this.agregarAsignacionService.execute(dto)
     }
 }

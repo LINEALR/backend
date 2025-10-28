@@ -1,5 +1,5 @@
 import { Inject, Injectable } from "@nestjs/common";
-import { Usuario } from "src/domain/usuario/usuario.entity";
+import { Usuario } from "src/domain/entities/usuario/usuario.entity";
 import { UpdateUsuario } from "src/ports/in/usuario/update-usuario.port";
 import type { UsuarioRepositoryPort } from "src/ports/out/usuario-repository.port";
 import { USUARIO_REPOSITORY_PORT } from "src/ports/out/usuario-repository.port";

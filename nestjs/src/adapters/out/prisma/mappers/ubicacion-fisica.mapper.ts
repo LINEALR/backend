@@ -1,5 +1,5 @@
 import { RawBody } from "@nestjs/common";
-import { UbicacionFisica } from "src/domain/ubicacion-fisica/ubicacion-fisica.entity";
+import { UbicacionFisica } from "src/domain/entities/ubicacion-fisica/ubicacion-fisica.entity";
 
 export class UbicacionFisicaMapper {
     static toPrisma(entity: UbicacionFisica) {

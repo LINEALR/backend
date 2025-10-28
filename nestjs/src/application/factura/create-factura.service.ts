@@ -1,5 +1,5 @@
 import { Inject, Injectable } from "@nestjs/common";
-import { Factura } from "src/domain/factura/factura.entity";
+import { Factura } from "src/domain/entities/factura/factura.entity";
 import { CreateFactura } from "src/ports/in/factura/create-factura.port";
 import type { FacturaRepositoryPort } from "src/ports/out/factura-repository.port";
 import { FACTURA_REPOSITORY_PORT } from "src/ports/out/factura-repository.port";
