@@ -13,6 +13,7 @@ import { type CreateDispositivos, CREATE_DISPOSITIVOS_PORT } from "src/ports/in/
 import { type UpdateDispositivos, UPDATE_DISPOSITIVOS_PORT } from "src/ports/in/dipositivos/update-dispositivos.port";
 import { type DeleteDispositivos, DELETE_DISPOSITIVOS_PORT } from "src/ports/in/dipositivos/delete-dipositivos.port";
 import { type AsignarDispositivo, ASIGNAR_DISPOSITIVO_PORT } from "src/ports/in/dipositivos/asignar-dispositivo.port";
+import { type RevocarDispositivo, REVOCAR_DISPOSITIVO_PORT } from "src/ports/in/dipositivos/revocar-dispositivo.port";
 import { type AgregarAsignacion, AGREGAR_CON_ASIGNACION_PORT } from "src/ports/in/dipositivos/agregar-asignacion.port";
 
 @Controller('dispositivos')
@@ -32,6 +33,9 @@ export class DispositivosController {
 
         @Inject(ASIGNAR_DISPOSITIVO_PORT)
         private readonly asignarDispositivosService: AsignarDispositivo,
+
+        @Inject(REVOCAR_DISPOSITIVO_PORT)
+        private readonly revocarDispositivosService: RevocarDispositivo,
 
         @Inject(AGREGAR_CON_ASIGNACION_PORT)
         private readonly agregarAsignacionService: AgregarAsignacion,
@@ -86,6 +90,20 @@ export class DispositivosController {
         @Body() dto: { num_control: number }
     ) {
         return this.asignarDispositivosService.execute({
+            id_dispositivos,
+            num_control: dto.num_control
+        });
+    } 
+
+    @Put('revocar/:id_dispositivos')
+    @UseInterceptors(CacheInterceptor)
+    @CacheKey('revocar-dispositivos')
+    @CacheTTL(5)
+    async revocar(
+        @Param('id_dispositivos') id_dispositivos: number,
+        @Body() dto: { num_control: number }
+    ) {
+        return this.revocarDispositivosService.execute({
             id_dispositivos,
             num_control: dto.num_control
         });

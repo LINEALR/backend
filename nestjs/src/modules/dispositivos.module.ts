@@ -10,6 +10,7 @@ import { CreateDispositivosService } from "src/application/dipositivos/create-di
 import { UpdateDispositivosService } from "src/application/dipositivos/update-dispositivos.service";
 import { DeleteDispositivosService } from "src/application/dipositivos/delete-dispositivos.service";
 import { AsignarDispositivoService } from "src/application/dipositivos/asignar-dispositivo.service";
+import { RevocarDispositivoService } from "src/application/dipositivos/revocar-dispositivo.service";
 import { AgregarAsignacionService } from "src/application/dipositivos/agregar-asignacion.service";
 
 import { DISPOSITIVOS_REPOSITORY_PORT } from "src/ports/out/dispositivos-repository.port";
@@ -18,6 +19,7 @@ import { CREATE_DISPOSITIVOS_PORT } from "src/ports/in/dipositivos/create-dispos
 import { UPDATE_DISPOSITIVOS_PORT } from "src/ports/in/dipositivos/update-dispositivos.port";
 import { DELETE_DISPOSITIVOS_PORT } from "src/ports/in/dipositivos/delete-dipositivos.port";
 import { ASIGNAR_DISPOSITIVO_PORT } from "src/ports/in/dipositivos/asignar-dispositivo.port";
+import { REVOCAR_DISPOSITIVO_PORT } from "src/ports/in/dipositivos/revocar-dispositivo.port";
 import { AGREGAR_CON_ASIGNACION_PORT } from "src/ports/in/dipositivos/agregar-asignacion.port";
 
 import { ColaboradoresModule } from "./colaboradores.module";
@@ -33,6 +35,7 @@ import { ColaboradoresModule } from "./colaboradores.module";
         { provide: UPDATE_DISPOSITIVOS_PORT, useClass: UpdateDispositivosService },
         { provide: DELETE_DISPOSITIVOS_PORT, useClass: DeleteDispositivosService },
         { provide: ASIGNAR_DISPOSITIVO_PORT, useClass: AsignarDispositivoService },
+        { provide: REVOCAR_DISPOSITIVO_PORT, useClass: RevocarDispositivoService},
         { provide: AGREGAR_CON_ASIGNACION_PORT, useClass: AgregarAsignacionService}
     ],
 })

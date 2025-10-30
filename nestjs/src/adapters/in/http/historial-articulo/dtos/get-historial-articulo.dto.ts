@@ -5,7 +5,7 @@ export class GetHistorialArticuloDto {
     @IsOptional()
     @Type(() => Number)
     @IsInt()
-    id_colaborador: number;
+    id_colaboradores: number;
 
     @IsOptional()
     @Type(() => Number)

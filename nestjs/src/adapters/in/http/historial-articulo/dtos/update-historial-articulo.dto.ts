@@ -3,7 +3,7 @@ import { IsInt, IsOptional, IsString, IsDate } from "class-validator";
 export class UpdateHistorialArticuloDto {
     @IsOptional()
     @IsInt()
-    id_colaborador: number;
+    id_colaboradores: number;
 
     @IsOptional()
     @IsInt()

@@ -4,5 +4,5 @@ import { HistorialArticulo } from "src/domain/entities/historial-articulo/histor
 export const CREATE_HISTORIAL_ARTICULO_PORT = Symbol('CREATE_HISTORIAL_ARTICULO_PORT');
 
 export interface CreateHistorialArticulo {
-    execute(historial_articulo: Partial<HistorialArticulo>): Promise<HistorialArticulo>;
+    execute(historial_articulo: {num_control: number; id_usuario: number; id_dispositivos: number; movimiento: string; fecha_modificacion: Date}): Promise<HistorialArticulo>;
 }

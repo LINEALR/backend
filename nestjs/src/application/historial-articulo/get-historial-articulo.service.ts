@@ -15,7 +15,7 @@ export class GetHistorialArticuloService implements GetHistorialArticulo {
             currentPage: number;
         }> {
         const historial_articulo = await this.repo.get(search);
-        if (historial_articulo) {
+        if (!historial_articulo) {
             throw new Error('Error')
         }
         return historial_articulo;

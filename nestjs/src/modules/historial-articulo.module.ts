@@ -15,9 +15,10 @@ import { GET_HISTORIAL_ARTICULO_PORT } from "src/ports/in/historial-articulo/get
 import { CREATE_HISTORIAL_ARTICULO_PORT } from "src/ports/in/historial-articulo/create-historial-articulo.port";
 import { UPDATE_HISTORIAL_ARTICULO_PORT } from "src/ports/in/historial-articulo/update-historial-articulo.port";
 import { DELETE_HISTORIAL_ARTICULO_PORT } from "src/ports/in/historial-articulo/delete-historial-articulo.port";
+import { ColaboradoresModule } from "./colaboradores.module";
 
 @Module ({
-        imports: [],
+        imports: [ColaboradoresModule],
         controllers: [HistorialArticuloController],
         providers: [
             PrismaService,

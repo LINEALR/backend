@@ -103,7 +103,7 @@ model t_dispositivos {
   codigo_propietario   Int
   codigo_ubicacion     Int
   id_factura           Int
-  num_cargador         String?            @db.VarChar(255)
+  num_cargador         String?            @db.VarChar
   t_propietario        t_propietario      @relation(fields: [codigo_propietario], references: [id_propietario], onDelete: NoAction, onUpdate: NoAction, map: "t_dispositivos_codigo_propietario_foreign")
   t_ubicacion_fisica   t_ubicacion_fisica @relation(fields: [codigo_ubicacion], references: [id_ubicacion], onDelete: NoAction, onUpdate: NoAction, map: "t_dispositivos_codigo_ubicacion_foreign")
   t_areas_sistemas     t_areas_sistemas   @relation(fields: [id_area], references: [id_area], onDelete: NoAction, onUpdate: NoAction, map: "t_dispositivos_id_area_foreign")
@@ -133,15 +133,13 @@ model t_historial_articulo {
   id_usuario         Int
   fecha_modificacion DateTime @db.Date
   id_dispositivos    Int
-  hostname           String   @db.VarChar(255)
-  ceco_sap_ant       String   @db.VarChar(255)
-  num_control_ant    Int
   id_movimiento      Int
+  id_colaboradores   Int?
 }
 
 model t_movimientos {
   id_movimiento          Int    @id(map: "T_movimientos_pkey") @default(autoincrement())
-  descripcion_movimineto String @db.VarChar(255)
+  descripcion_movimiento String @db.VarChar(255)
 }
 
 model t_propietario {
@@ -202,4 +200,17 @@ model t_usuario {
   status          Boolean
   t_roles         t_roles         @relation(fields: [id_rol], references: [id_rol], onDelete: NoAction, onUpdate: NoAction, map: "t_usuario_id_rol_foreign")
   t_colaboradores t_colaboradores @relation(fields: [id_usuario], references: [id_colaboradores], onDelete: NoAction, onUpdate: NoAction, map: "t_usuario_id_usuario_foreign")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model t_colaboradores_test {
+  id_colaborador BigInt  @default(autoincrement())
+  num_control    BigInt?
+  nombre         String? @db.VarChar(255)
+  correo         String? @db.VarChar(255)
+  area           String? @db.VarChar(255)
+  empresa        String? @db.VarChar(255)
+  status         String? @db.VarChar(255)
+
+  @@ignore
 }

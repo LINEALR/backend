@@ -13,6 +13,9 @@ async function bootstrap() {
       transform: true,
       whitelist: true,
       forbidNonWhitelisted: true,
+      transformOptions: {
+        enableImplicitConversion: true, // 👈 permite convertir strings a Date, number, etc.
+      },
     })
   )
 
