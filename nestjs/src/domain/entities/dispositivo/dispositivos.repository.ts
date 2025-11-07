@@ -1,3 +1,4 @@
+import { Factura } from "../factura/factura.entity";
 import { Dispositivos } from "./dispositivos.entity";
 
 export interface DispositivosRepository {
@@ -9,6 +10,7 @@ export interface DispositivosRepository {
             currentPage: number;
         }>;
     create(disposivo: Partial<Dispositivos>): Promise<Dispositivos>;
-    upadte(id_dispositivo: number, dipsositivo: Partial<Dispositivos>): Promise<Dispositivos>;
+    update(id_dispositivo: number, dipsositivo: Partial<Dispositivos>): Promise<Dispositivos>;
     delete(id_dispositivo: number): Promise<void>;
+    fullCreate(data: {dispositivo: Partial<Dispositivos>, factura: Partial<Factura>});
 }

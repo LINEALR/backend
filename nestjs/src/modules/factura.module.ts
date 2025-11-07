@@ -21,12 +21,13 @@ import { DELETE_FACTURA_PORT } from 'src/ports/in/factura/delete-factura.port';
     controllers: [FacturaController],
     providers: [
         PrismaService,
-{ provide: FACTURA_REPOSITORY_PORT, useClass: PrismaFacturaRepositoryi},
-{ provide: GET_FACTURA_PORT, useClass: GetFacturaService},
-{ provide: CREATE_FACTURA_PORT, useClass: CreateFacturaService},
-{ provide: UPDATE_FACTURA_PORT, useClass: UpdateFacturaService},
-        { provide: DELETE_FACTURA_PORT, useClass: DeleteFacturaService}
-    ]
+        { provide: FACTURA_REPOSITORY_PORT, useClass: PrismaFacturaRepositoryi },
+        { provide: GET_FACTURA_PORT, useClass: GetFacturaService },
+        { provide: CREATE_FACTURA_PORT, useClass: CreateFacturaService },
+        { provide: UPDATE_FACTURA_PORT, useClass: UpdateFacturaService },
+        { provide: DELETE_FACTURA_PORT, useClass: DeleteFacturaService }
+    ],
+      exports: [FACTURA_REPOSITORY_PORT]
 })
 
-export class FacturaModule {}
+export class FacturaModule { }

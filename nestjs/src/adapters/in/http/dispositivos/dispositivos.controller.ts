@@ -7,6 +7,7 @@ import { GetDispositivosDto } from "./dtos/get-dispositivos.dto";
 import { CreateDispositivosDto } from "./dtos/create-dispositivos.dto";
 import { UpdateDispositivosDto } from "./dtos/update-dispositivos.dto";
 import { AgregarAsignacionDto } from "./dtos/agregar-asignacion.dto";
+import { FullCreateDispositivosDto } from "./dtos/full-create-dispositivo.dto";
 
 import { type GetDispositivos, GET_DISPOSITIVOS_PORT } from "src/ports/in/dipositivos/get-dispositivos.port";
 import { type CreateDispositivos, CREATE_DISPOSITIVOS_PORT } from "src/ports/in/dipositivos/create-dispositivos.port";
@@ -15,6 +16,7 @@ import { type DeleteDispositivos, DELETE_DISPOSITIVOS_PORT } from "src/ports/in/
 import { type AsignarDispositivo, ASIGNAR_DISPOSITIVO_PORT } from "src/ports/in/dipositivos/asignar-dispositivo.port";
 import { type RevocarDispositivo, REVOCAR_DISPOSITIVO_PORT } from "src/ports/in/dipositivos/revocar-dispositivo.port";
 import { type AgregarAsignacion, AGREGAR_CON_ASIGNACION_PORT } from "src/ports/in/dipositivos/agregar-asignacion.port";
+import { type FullCreateDispositivos, FULL_CREATE_DISPOSITIVOS_PORT  } from "src/ports/in/dipositivos/full-create-dispositvos.port";
 
 @Controller('dispositivos')
 export class DispositivosController {
@@ -39,6 +41,9 @@ export class DispositivosController {
 
         @Inject(AGREGAR_CON_ASIGNACION_PORT)
         private readonly agregarAsignacionService: AgregarAsignacion,
+
+        @Inject(FULL_CREATE_DISPOSITIVOS_PORT)
+        private readonly fullCreateDispositivosService: FullCreateDispositivos
     ) { }
 
     @Get('buscar')
@@ -93,7 +98,7 @@ export class DispositivosController {
             id_dispositivos,
             num_control: dto.num_control
         });
-    } 
+    }
 
     @Put('revocar/:id_dispositivos')
     @UseInterceptors(CacheInterceptor)
@@ -107,7 +112,7 @@ export class DispositivosController {
             id_dispositivos,
             num_control: dto.num_control
         });
-    } 
+    }
 
     @Post('asignado')
     @UseInterceptors(CacheInterceptor)
@@ -115,5 +120,13 @@ export class DispositivosController {
     @CacheTTL(5)
     async agregar_asignacion(@Body() dto: AgregarAsignacionDto) {
         return this.agregarAsignacionService.execute(dto)
+    }
+
+    @Post('creacion-con-factura')
+    @UseInterceptors(CacheInterceptor)
+    @CacheKey('create-dispositivos')
+    @CacheTTL(5)
+    async fullCreate(@Body() dto: FullCreateDispositivosDto) {
+        return this.fullCreateDispositivosService.execute(dto)
     }
 }

@@ -25,7 +25,7 @@ export class AsignarDispositivoService implements AsignarDispositivo {
 
         if(disp.id_dispositivos === undefined) throw new Error('No se selecciono dispositivo')
 
-        const updatedDispositivo = await this.dispositivosRepo.upadte(disp.id_dispositivos,{
+        const updatedDispositivo = await this.dispositivosRepo.update(disp.id_dispositivos,{
             id_area: colab.id_area,
             num_control: colab.id_colaboradores,
             status: 'ASIGNADO' 

@@ -3,6 +3,8 @@ import type { DispositivosRepository } from "src/domain/entities/dispositivo/dis
 import { Dispositivos } from "src/domain/entities/dispositivo/dispositivos.entity";
 import { Injectable } from "@nestjs/common";
 import { DispositivosMapper } from "./mappers/dispositivos.mapper";
+import { Factura } from "src/domain/entities/factura/factura.entity";
+import { FacturaMapper } from "./mappers/factura.mapper";
 
 @Injectable()
 export class PrismaDispositivosRepository implements DispositivosRepository {
@@ -50,16 +52,6 @@ export class PrismaDispositivosRepository implements DispositivosRepository {
             totalPages: Math.ceil(total / pageSize),
             currentPage: page
         }
-
-        // return {
-        //     dispositivos: dispositivos.map(d => ({
-        //         ...DispositivosMapper.toDomain(d),
-        //         descripcion_ceco: d.id_area === 0 ? "Desconocido" : d.t_areas_sistemas?.descripcion_ceco,
-        //         nombre_usuario: d.id_usuario === 0 ? "Sin usuario asignado" : d.t_usuarios?.nombre,
-        //         folio_factura: d.id_factura === 0 ? "Sin factura" : d.t_facturas?.folio_factura,
-        //         nombre_propietario: d.id_propietario === 0 ? "Sin propietario" : d.t_propietarios?.nombre
-        //     }))
-        // };
     }
 
     async create(dispositivo: Dispositivos): Promise<Dispositivos> {
@@ -67,16 +59,27 @@ export class PrismaDispositivosRepository implements DispositivosRepository {
         return DispositivosMapper.toDomain(created)
     }
 
-    async upadte(id_dispositivo: number, dispositivo: Partial<Dispositivos>): Promise<Dispositivos> {
+    async update(id_dispositivo: number, dispositivo: Partial<Dispositivos>): Promise<Dispositivos> {
         const updated = await this.prisma.t_dispositivos.update({
             where: { id_dispositivos: id_dispositivo },
             data: DispositivosMapper.partialToPrisma(dispositivo),
         });
-        
+
         return DispositivosMapper.toDomain(updated)
     }
 
     async delete(id_dispositivo: number): Promise<void> {
         await this.prisma.t_dispositivos.delete({ where: { id_dispositivos: id_dispositivo } })
+    }
+
+    async fullCreate(data: { dispositivo: Dispositivos; factura: Factura }): Promise<{ dispositivo: Dispositivos; factura: Factura}> {
+        return this.prisma.$transaction(async (tx) => {
+            const dispositivo = await tx.t_dispositivos.create({ data: DispositivosMapper.toPrisma(data.dispositivo) });
+            const factura = await tx.t_factura.create({ data: FacturaMapper.toPrisma(data.factura) })
+            return {
+                dispositivo: DispositivosMapper.toDomain(dispositivo),
+                factura: FacturaMapper.toDomain(factura)
+            }
+        });
     }
 }

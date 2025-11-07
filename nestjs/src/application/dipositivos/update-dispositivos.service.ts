@@ -9,6 +9,6 @@ export class UpdateDispositivosService implements UpdateDispositivos {
     constructor(@Inject(DISPOSITIVOS_REPOSITORY_PORT) private readonly repo: DispositivosRepositoryPort) {}
 
     async execute(id_dispositivos: number, data: Partial<Dispositivos>): Promise<Dispositivos> {
-        return await this.repo.upadte(id_dispositivos, data);
+        return await this.repo.update(id_dispositivos, data);
     }
 }

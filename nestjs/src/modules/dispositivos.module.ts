@@ -21,11 +21,14 @@ import { DELETE_DISPOSITIVOS_PORT } from "src/ports/in/dipositivos/delete-diposi
 import { ASIGNAR_DISPOSITIVO_PORT } from "src/ports/in/dipositivos/asignar-dispositivo.port";
 import { REVOCAR_DISPOSITIVO_PORT } from "src/ports/in/dipositivos/revocar-dispositivo.port";
 import { AGREGAR_CON_ASIGNACION_PORT } from "src/ports/in/dipositivos/agregar-asignacion.port";
+import { FULL_CREATE_DISPOSITIVOS_PORT } from "src/ports/in/dipositivos/full-create-dispositvos.port";
 
-import { ColaboradoresModule } from "./colaboradores.module";
+import { ColaboradoresModule } from "./colaboradores.module"
+import { FullCreateDispositivosService } from "src/application/dipositivos/full-create-dispositivos.service";
+import { FacturaModule } from "./factura.module";
 
 @Module({
-    imports: [ColaboradoresModule],
+    imports: [ColaboradoresModule, FacturaModule],
     controllers: [DispositivosController],
     providers: [
         PrismaService,
@@ -36,7 +39,8 @@ import { ColaboradoresModule } from "./colaboradores.module";
         { provide: DELETE_DISPOSITIVOS_PORT, useClass: DeleteDispositivosService },
         { provide: ASIGNAR_DISPOSITIVO_PORT, useClass: AsignarDispositivoService },
         { provide: REVOCAR_DISPOSITIVO_PORT, useClass: RevocarDispositivoService},
-        { provide: AGREGAR_CON_ASIGNACION_PORT, useClass: AgregarAsignacionService}
+        { provide: AGREGAR_CON_ASIGNACION_PORT, useClass: AgregarAsignacionService},
+        { provide: FULL_CREATE_DISPOSITIVOS_PORT, useClass: FullCreateDispositivosService}
     ],
 })
 
