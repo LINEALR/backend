@@ -12,25 +12,65 @@ export class RevocarDispositivoService implements RevocarDispositivo {
     ) { }
 
     async execute(data: { id_dispositivos: number; num_control: number }): Promise<Dispositivos> {
-        const dispositivo = await this.dispositivosRepo.get({ id_dispositivos: data.id_dispositivos })
-        if (!dispositivo || dispositivo.dispositivos.length === 0) throw new Error("Dispositivo no encontrado")
+         const dispositivo = await this.dispositivosRepo.get({
+      id_dispositivos: data.id_dispositivos,
+    });
 
-        const disp = dispositivo.dispositivos[0];
-        if (disp.status === 'NO ASIGNADO') throw new Error("Dispositio no asignado");
+    if (!dispositivo || dispositivo.dispositivos.length === 0)
+      throw new Error("Dispositivo no encontrado");
 
-        const colaborador = await this.colaboradoresRepo.get({ num_control: data.num_control });
-         if (!colaborador || colaborador.colaboradores.length === 0) throw new Error("Usuario no encontrado");
+    const disp = dispositivo.dispositivos[0];
 
-        const colab = colaborador.colaboradores[0];
+    // Validar que tenga un estado
+    if (!disp.status) throw new Error("El dispositivo no tiene estado definido");
 
-        if(disp.id_dispositivos === undefined) throw new Error('No se selecciono dispositivo')
+    // Validar usuario
+    const colaborador = await this.colaboradoresRepo.get({
+      num_control: data.num_control,
+    });
+    if (!colaborador || colaborador.colaboradores.length === 0)
+      throw new Error("Usuario no encontrado");
 
-        const updatedDispositivo = await this.dispositivosRepo.update(disp.id_dispositivos,{
-            id_area: 1,
-            num_control: 1,
-            status: 'NO ASIGNADO' 
-        })
+    const colab = colaborador.colaboradores[0];
 
-        return updatedDispositivo;
+    if (disp.id_dispositivos === undefined)
+      throw new Error("No se seleccionó un dispositivo");
+
+    // ----- 🔧 Nueva lógica de cambio de estado -----
+    let nuevoEstado: string;
+    let updateData: Partial<Dispositivos> = {};
+
+    switch (disp.status.toUpperCase()) {
+      case "ASIGNADO":
+        nuevoEstado = "POR CONFIRMAR";
+        updateData = {
+          id_area: 1, // o el área que corresponda
+          num_control: colab.num_control,
+          status: nuevoEstado,
+        };
+        break;
+
+      case "POR CONFIRMAR":
+        nuevoEstado = "NO ASIGNADO";
+        updateData = {
+          id_area: 1, // limpiar datos del área
+          num_control: 1, // limpiar asignación
+          status: nuevoEstado,
+        };
+        break;
+
+      default:
+        throw new Error(
+          `El estado actual (${disp.status}) no permite revocación`
+        );
+    }
+
+    // Actualizar dispositivo
+    const updatedDispositivo = await this.dispositivosRepo.update(
+      disp.id_dispositivos,
+      updateData
+    );
+
+     return updatedDispositivo
     }
 }
